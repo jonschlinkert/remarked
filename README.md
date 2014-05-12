@@ -1,6 +1,6 @@
 # slapdash [![NPM version](https://badge.fury.io/js/slapdash.png)](http://badge.fury.io/js/slapdash)
 
-> Markdown parser and lexer. Uses JSON and Lo-Dash templates to generate HTML, so everything is completely customizable.
+> Fork of marked.js, with actual unit tests, cleaner more organized code-base, sensible defaults and doesn't clutter your HTML with unwanted junk.
 
 ## Install
 Install with [npm](npmjs.org):
@@ -9,6 +9,16 @@ Install with [npm](npmjs.org):
 npm i slapdash --save-dev
 ```
 
+
+## Project goals:
+
+Most of these goals are focused on making the project easier to maintain and contribute to (than marked.js is):
+
+- [ ] Unit tests, better coverage (started). Many more tests are needed, I'd also like to move the code inline instead of reading from files wherever reasonable.
+- [ ] Cleaner more organized code-base (started)
+- [ ] Don't clutter HTML with unwanted junk (started)
+- [ ] Refactor options handling
+- [ ] Allow extensions/plugins
 
 ## Author
 
@@ -20,6 +30,10 @@ npm i slapdash --save-dev
 ## License
 Copyright (c) 2014 Jon Schlinkert, contributors.  
 Released under the MIT license
+
+> Based on marked <https://github.com/chjj/marked>
+> Copyright (c) 2011-2014, Christopher Jeffrey, contributors.
+> Released under the MIT License (MIT)
 
 ***
 

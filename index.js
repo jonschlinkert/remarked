@@ -3,6 +3,7 @@
  * Copyright (c) 2011-2014, Christopher Jeffrey, contributors.
  * Released under the MIT License (MIT)
  */
+
 'use strict';
 
 
@@ -12,7 +13,7 @@ var Parser = require('./lib/parser');
 var Renderer = require('./lib/renderer');
 
 var defaults = require('./lib/defaults');
-var utils = require('./lib/utils');
+var utils = require('./lib/utils/helpers');
 
 /**
  * slapdash

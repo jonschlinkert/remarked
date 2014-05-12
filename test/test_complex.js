@@ -31,7 +31,7 @@ describe('complex', function () {
   });
 
   describe('markdown_documentation_basics', function () {
-    it('should convert markdown_documentation_basics', function (done) {
+    xit('should convert markdown_documentation_basics', function (done) {
       var testfile = 'markdown_documentation_basics';
       var fixture = helper.readFile(testfile + '.md');
       var actual = marked(fixture);
