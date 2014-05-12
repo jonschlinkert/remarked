@@ -6,11 +6,10 @@
 
 'use strict';
 
-
-var InlineLexer = require('./lib/inline-lexer');
 var Lexer = require('./lib/lexer');
 var Parser = require('./lib/parser');
 var Renderer = require('./lib/renderer');
+var InlineLexer = require('./lib/inline-lexer');
 
 var defaults = require('./lib/defaults');
 var utils = require('./lib/utils/helpers');
@@ -19,20 +18,22 @@ var utils = require('./lib/utils/helpers');
  * slapdash
  */
 
-function slapdash(src, opt, callback) {
-  if (callback || typeof opt === 'function') {
+function slapdash(src, options, callback) {
+  if (callback || typeof options === 'function') {
     if (!callback) {
-      callback = opt;
-      opt = null;
+      callback = options;
+      options = null;
     }
 
-    opt = utils._merge({}, defaults, opt || {});
+    options = utils._merge({}, defaults, options || {});
 
-    var highlight = opt.highlight,
-      tokens, pending, i = 0;
+    var highlight = options.highlight;
+    var tokens;
+    var pending;
+    var i = 0;
 
     try {
-      tokens = Lexer.lex(src, opt);
+      tokens = Lexer.lex(src, options);
     } catch (e) {
       return callback(e);
     }
@@ -41,34 +42,34 @@ function slapdash(src, opt, callback) {
 
     var done = function (err) {
       if (err) {
-        opt.highlight = highlight;
+        options.highlight = highlight;
         return callback(err);
       }
 
       var out;
 
       try {
-        out = Parser.parse(tokens, opt);
+        out = Parser.parse(tokens, options);
       } catch (e) {
         err = e;
       }
 
-      opt.highlight = highlight;
-
+      options.highlight = highlight;
       return err ? callback(err) : callback(null, out);
     };
+
 
     if (!highlight || highlight.length < 3) {
       return done();
     }
 
-    delete opt.highlight;
+    delete options.highlight;
 
     if (!pending) {
       return done();
     }
 
-    for (; i < tokens.length; i++) {
+    for (; i < pending; i++) {
       (function (token) {
         if (token.type !== 'code') {
           return --pending || done();
@@ -89,13 +90,13 @@ function slapdash(src, opt, callback) {
     return;
   }
   try {
-    if (opt) {
-      opt = utils._merge({}, defaults, opt);
+    if (options) {
+      options = utils._merge({}, defaults, options);
     }
-    return Parser.parse(Lexer.lex(src, opt), opt);
+    return Parser.parse(Lexer.lex(src, options), options);
   } catch (e) {
-    e.message += '\nPlease report this to https://github.com/chjj/slapdash.';
-    if ((opt || defaults).silent) {
+    e.message += '\n[slapdash]: please report this to https://github.com/jonschlinkert/slapdash.';
+    if ((options || defaults).silent) {
       return '<p>An error occured:</p><pre>' + utils._escape(e.message + '', true) + '</pre>';
     }
     throw e;
@@ -103,15 +104,17 @@ function slapdash(src, opt, callback) {
 }
 
 /**
- * Options
+ * options
  */
 
-slapdash.options = slapdash.setOptions = function(opt) {
-  utils._merge(defaults, opt);
+slapdash.options = slapdash.setOptions = function(options) {
+  utils._merge(defaults, options);
   return slapdash;
 };
 
 slapdash.defaults = defaults;
+
+
 
 /**
  * Expose
@@ -125,12 +128,11 @@ slapdash.Renderer = Renderer;
 slapdash.Lexer = Lexer;
 slapdash.lexer = Lexer.lex;
 
-slapdash.InlineLexer = InlineLexer;
+slapdash.InlineLexer = InlineLexer
 slapdash.inlineLexer = InlineLexer.output;
 
+
 slapdash.parse = slapdash;
-
-
 
 // Export slapdash
 module.exports = slapdash;
