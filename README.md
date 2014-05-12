@@ -6,17 +6,18 @@
 Install with [npm](npmjs.org):
 
 ```bash
-npm i slapdash --save-dev
+npm i slapdash --save
 ```
 
 
 ## Project goals:
 
-Most of these goals are focused on making the project easier to maintain and contribute to (than marked.js is):
+Most of these goals are focused on making the project easier to maintain and contribute to:
 
 - [ ] Unit tests, better coverage (started). Many more tests are needed, I'd also like to move the code inline instead of reading from files wherever reasonable.
 - [ ] Cleaner more organized code-base (started)
-- [ ] Don't clutter HTML with unwanted junk (started)
+- [ ] Well-commented code
+- [ ] Remove extra tags/attributes from generated HTML (e.g. heading ids) (started)
 - [ ] Refactor options handling
 - [ ] Allow extensions/plugins
 

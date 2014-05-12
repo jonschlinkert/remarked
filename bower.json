@@ -1,0 +1,7 @@
+{
+  "name": "slapdash",
+  "version": "0.1.0-beta",
+  "main": [
+    "index.js"
+  ]
+}
