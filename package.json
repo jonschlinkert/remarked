@@ -1,7 +1,7 @@
 {
   "name": "slapdash",
   "description": "Fork of marked.js, with actual unit tests, cleaner more organized code-base, sensible defaults and doesn't clutter your HTML with unwanted junk.",
-  "version": "0.1.0",
+  "version": "0.1.0-beta",
   "homepage": "https://github.com/jonschlinkert/slapdash",
   "author": {
     "name": "Jon Schlinkert",
@@ -23,11 +23,8 @@
   "keywords": [
     "docs",
     "documentation",
-    "generate",
-    "generator",
     "markdown",
-    "templates",
-    "verb"
+    "marked"
   ],
   "main": "index.js",
   "engines": {
@@ -39,10 +36,8 @@
   "devDependencies": {
     "chai": "~1.9.1",
     "fs-utils": "^0.4.3",
+    "lodash": "^2.4.1",
     "mocha": "~1.18.2",
     "verb": "~0.2.0"
-  },
-  "dependencies": {
-    "lodash": "^2.4.1"
   }
 }
