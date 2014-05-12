@@ -1,6 +1,6 @@
 # slapdash [![NPM version](https://badge.fury.io/js/slapdash.png)](http://badge.fury.io/js/slapdash)
 
-> Markdown parser and lexer. Fork of marked.js, with unit tests, clean and organized code-base, and only doesn't generate unwanted HTML (e.g. heading ids).
+> Markdown parser and lexer. Fork of marked.js, with unit tests, clean and organized code-base, and doesn't generate unwanted HTML (e.g. heading ids).
 
 ## Install
 Install with [npm](npmjs.org):

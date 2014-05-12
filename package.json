@@ -1,6 +1,6 @@
 {
   "name": "slapdash",
-  "description": "Markdown parser and lexer. Fork of marked.js, with unit tests, clean and organized code-base, and only doesn't generate unwanted HTML (e.g. heading ids).",
+  "description": "Markdown parser and lexer. Fork of marked.js, with unit tests, clean and organized code-base, and doesn't generate unwanted HTML (e.g. heading ids).",
   "version": "0.1.0-beta",
   "homepage": "https://github.com/jonschlinkert/slapdash",
   "author": {
