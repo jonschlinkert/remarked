@@ -1,6 +1,6 @@
 # slapdash [![NPM version](https://badge.fury.io/js/slapdash.png)](http://badge.fury.io/js/slapdash)
 
-> Fork of marked.js, with actual unit tests, cleaner more organized code-base, sensible defaults and doesn't clutter your HTML with unwanted junk.
+> Markdown parser and lexer. Fork of marked.js, with unit tests, clean and organized code-base, and only doesn't generate unwanted HTML (e.g. heading ids).
 
 ## Install
 Install with [npm](npmjs.org):
