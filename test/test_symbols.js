@@ -5,26 +5,25 @@
  * Licensed under the MIT license.
  */
 
-const path = require('path');
 const expect = require('chai').expect;
-const file = require('fs-utils');
 const marked = require('../');
 const helper = require('./helpers/utils');
+var normalize = helper.normalize;
 
 
 /**
- * smatypants
+ * Language tests
  */
 
-describe('smatypants', function () {
-  it('should convert text', function (done) {
-    var testfile = 'smartypants_text';
+describe('amps_and_angles_encoding', function () {
+  it('should convert amps_and_angles_encoding', function (done) {
+    var testfile = 'amps_and_angles_encoding';
     var fixture = helper.readFile(testfile + '.md');
     var actual = marked(fixture);
 
     helper.writeActual('extras', testfile, actual);
     var expected = helper.readFile(testfile + '.html');
-    expect(actual).to.deep.equal(expected);
+    expect(normalize(actual)).to.equal(normalize(expected));
     done();
   });
 });

@@ -8,13 +8,23 @@ var utils = module.exports = {};
 
 
 utils.h1 = function(text, lvl, id) {
-  return '<level'+lvl+' id="'+id+'">'+text+'</level'+lvl+'>'
+  return '<level'+lvl+' id="'+id+'">'+text+'</level'+lvl+'>';
 };
 
 
 utils.readFile = function(filepath) {
   var src = path.join('test/fixtures', filepath);
   return file.readFileSync(src);
+};
+
+/**
+ * Normalize newlines
+ * @param   {String}  str
+ * @return  {String}
+ */
+
+utils.normalize = function(str) {
+  return str.replace(/\s+/g, '');
 };
 
 

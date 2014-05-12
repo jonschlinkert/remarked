@@ -41,5 +41,8 @@
     "fs-utils": "^0.4.3",
     "mocha": "~1.18.2",
     "verb": "~0.2.0"
+  },
+  "dependencies": {
+    "lodash": "^2.4.1"
   }
 }

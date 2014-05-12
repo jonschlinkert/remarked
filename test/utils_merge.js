@@ -5,10 +5,7 @@
  * Licensed under the MIT license.
  */
 
-const path = require('path');
 const expect = require('chai').expect;
-const marked = require('../');
-const helper = require('./helpers/utils');
 const utils = require('../lib/utils');
 
 

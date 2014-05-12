@@ -5,11 +5,10 @@
  * Licensed under the MIT license.
  */
 
-const path = require('path');
 const expect = require('chai').expect;
-const file = require('fs-utils');
 const marked = require('../');
 const helper = require('./helpers/utils');
+var normalize = helper.normalize;
 
 
 /**
@@ -17,15 +16,15 @@ const helper = require('./helpers/utils');
  */
 
 describe('gfm:', function () {
-  describe('toplevel_paragraphs', function () {
-    it('should convert toplevel_paragraphs', function (done) {
-      var testfile = 'toplevel_paragraphs.gfm';
+  describe('gfm_toplevel_paragraphs', function () {
+    it('should convert gfm_toplevel_paragraphs', function (done) {
+      var testfile = 'gfm_toplevel_paragraphs';
       var fixture = helper.readFile(testfile + '.md');
       var actual = marked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
-      expect(actual).to.deep.equal(expected);
+      expect(normalize(actual)).to.equal(normalize(expected));
       done();
     });
   });
@@ -38,7 +37,7 @@ describe('gfm:', function () {
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
-      expect(actual).to.deep.equal(expected);
+      expect(normalize(actual)).to.equal(normalize(expected));
       done();
     });
   });
@@ -51,7 +50,7 @@ describe('gfm:', function () {
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
-      expect(actual).to.deep.equal(expected);
+      expect(normalize(actual)).to.equal(normalize(expected));
       done();
     });
   });
@@ -64,7 +63,7 @@ describe('gfm:', function () {
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
-      expect(actual).to.deep.equal(expected);
+      expect(normalize(actual)).to.equal(normalize(expected));
       done();
     });
   });
@@ -77,7 +76,7 @@ describe('gfm:', function () {
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
-      expect(actual).to.deep.equal(expected);
+      expect(normalize(actual)).to.equal(normalize(expected));
       done();
     });
   });
@@ -90,7 +89,7 @@ describe('gfm:', function () {
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
-      expect(actual).to.deep.equal(expected);
+      expect(normalize(actual)).to.equal(normalize(expected));
       done();
     });
   });
@@ -103,7 +102,7 @@ describe('gfm:', function () {
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
-      expect(actual).to.deep.equal(expected);
+      expect(normalize(actual)).to.equal(normalize(expected));
       done();
     });
   });
@@ -116,7 +115,7 @@ describe('gfm:', function () {
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
-      expect(actual).to.deep.equal(expected);
+      expect(normalize(actual)).to.equal(normalize(expected));
       done();
     });
   });
