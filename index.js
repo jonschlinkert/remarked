@@ -15,9 +15,9 @@ var Lexer = require('./lib/lexer');
 var Parser = require('./lib/parser');
 var Renderer = require('./lib/renderer');
 var InlineLexer = require('./lib/inline-lexer');
-
 var defaults = require('./lib/defaults');
 var utils = require('./lib/utils/helpers');
+
 
 /**
  * remarked

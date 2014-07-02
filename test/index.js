@@ -17,7 +17,6 @@ var marked = require('../');
 var helpers = require('./helpers/utils');
 
 
-
 /**
  * Load Tests
  */

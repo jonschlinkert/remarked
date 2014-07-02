@@ -15,7 +15,6 @@ const normalize = helper.normalize;
  * links
  */
 
-
 describe('links', function () {
 
   describe('autolinks', function () {

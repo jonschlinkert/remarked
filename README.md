@@ -1,18 +1,16 @@
 # remarked [![NPM version](https://badge.fury.io/js/remarked.png)](http://badge.fury.io/js/remarked)
 
-> Markdown parser and lexer. Fork of marked.js, with unit tests, clean and organized code-base, and doesn't generate unwanted HTML (e.g. heading ids).
+> Markdown parser and lexer (fork of marked.js).
 
 ## Install
-Install with [npm](npmjs.org):
+
+#### [npm](npmjs.org)
 
 ```bash
 npm i remarked --save
 ```
 
-
-## Project goals:
-
-Most of these goals are focused on making the project easier to maintain and contribute to:
+## Goals
 
 - [x] Unit tests
 - [ ] Better test coverage (started). Many more tests are needed, I'd also like to move the code inline instead of reading from files wherever reasonable.
@@ -22,14 +20,20 @@ Most of these goals are focused on making the project easier to maintain and con
 - [ ] Refactor options handling
 - [ ] Allow extensions/plugins
 
+## Why?
+
+Assemble used marked.js extensively, but given the massive amount of time and effort that we've put into fixing marked-related issues (due to breaking changes that were introduced without bumping the minor version), we've decided to maintain a fork so that our user base can have a more reliable experience going forward.
+
 ## Author
 
-**Jon Schlinkert**
 
+**Jon Schlinkert**
+ 
 + [github/jonschlinkert](https://github.com/jonschlinkert)
-+ [twitter/jonschlinkert](http://twitter.com/jonschlinkert)
++ [twitter/jonschlinkert](http://twitter.com/jonschlinkert) 
 
 ## License
+
 Copyright (c) 2014 Jon Schlinkert, contributors.  
 Released under the MIT license
 

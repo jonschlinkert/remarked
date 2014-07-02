@@ -1,7 +1,7 @@
 {
   "name": "remarked",
-  "description": "Markdown parser and lexer. Fork of marked.js, with unit tests, clean and organized code-base, and doesn't generate unwanted HTML (e.g. heading ids).",
-  "version": "0.1.0-beta",
+  "description": "Markdown parser and lexer (fork of marked.js).",
+  "version": "0.1.1-beta",
   "homepage": "https://github.com/jonschlinkert/remarked",
   "author": {
     "name": "Jon Schlinkert",
@@ -41,7 +41,9 @@
     "gulp-mocha": "^0.4.1",
     "js-beautify": "^1.5.1",
     "lodash": "^2.4.1",
-    "mocha": "~1.18.2",
-    "verb": "~0.2.0"
+    "mocha": "~1.18.2"
+  },
+  "dependencies": {
+    "template": "^0.2.1"
   }
 }
