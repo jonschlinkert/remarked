@@ -10,28 +10,27 @@
  * Modules
  */
 
-var fs = require('fs')
-  , path = require('path')
-  , marked = require('../');
+var fs = require('fs');
+var path = require('path');
+var _ = require('lodash');
+var marked = require('../');
+var helpers = require('./helpers/utils');
+
 
 /**
  * Load Tests
  */
 
 function load() {
-  var dir = __dirname + '/tests'
-    , files = {}
-    , list
-    , file
-    , i
-    , l;
+  var dir = __dirname + '/fixtures',
+    files = {}, list, file, i, l;
 
   list = fs
     .readdirSync(dir)
-    .filter(function(file) {
+    .filter(function (file) {
       return path.extname(file) !== '.html';
     })
-    .sort(function(a, b) {
+    .sort(function (a, b) {
       a = path.basename(a).toLowerCase().charCodeAt(0);
       b = path.basename(b).toLowerCase().charCodeAt(0);
       return a > b ? 1 : (a < b ? -1 : 0);
@@ -55,35 +54,43 @@ function load() {
  * Test Runner
  */
 
+
+function _flags(flags) {
+  return flags.forEach(function (key) {
+    var val = true;
+    if (key.indexOf('no') === 0) {
+      key = key.substring(2);
+      val = false;
+    }
+    if (marked.defaults.hasOwnProperty(key)) {
+      marked.defaults[key] = val;
+    }
+  });
+}
+
+
 function runTests(engine, options) {
   if (typeof engine !== 'function') {
     options = engine;
     engine = null;
   }
 
-  var engine = engine || marked
-    , options = options || {}
-    , files = options.files || load()
-    , complete = 0
-    , failed = 0
-    , failures = []
-    , keys = Object.keys(files)
-    , i = 0
-    , len = keys.length
-    , filename
-    , file
-    , flags
-    , text
-    , html
-    , j
-    , l;
+  engine = engine || marked;
+  options = options || {};
+  var files = options.files || load(),
+    complete = 0,
+    failed = 0,
+    failures = [],
+    keys = Object.keys(files),
+    i = 0,
+    len = keys.length,
+    filename, file, flags, text, html, j, l;
 
   if (options.marked) {
     marked.setOptions(options.marked);
   }
 
-main:
-  for (; i < len; i++) {
+  main: for (; i < len; i++) {
     filename = keys[i];
     file = files[filename];
 
@@ -92,29 +99,21 @@ main:
       delete marked._original;
     }
 
+
     flags = filename.split('.').slice(1, -1);
     if (flags.length) {
       marked._original = marked.defaults;
       marked.defaults = {};
-      Object.keys(marked._original).forEach(function(key) {
-        marked.defaults[key] = marked._original[key];
-      });
-      flags.forEach(function(key) {
-        var val = true;
-        if (key.indexOf('no') === 0) {
-          key = key.substring(2);
-          val = false;
-        }
-        if (marked.defaults.hasOwnProperty(key)) {
-          marked.defaults[key] = val;
-        }
-      });
+
+      marked.defaults = _.extend({}, marked._original);
+
+      _flags(flags);
     }
 
     try {
       text = engine(file.text).replace(/\s/g, '');
       html = file.html.replace(/\s/g, '');
-    } catch(e) {
+    } catch (e) {
       console.log('%s failed.', filename);
       throw e;
     }
@@ -135,9 +134,7 @@ main:
           Math.max(j - 30, 0),
           Math.min(j + 30, html.length));
 
-        console.log(
-          '\n#%d. %s failed at offset %d. Near: "%s".\n',
-          i + 1, filename, j, text);
+        console.log('\n#%d. %s failed at offset %d. Near: "%s".\n', i + 1, filename, j, text);
 
         console.log('\nGot:\n%s\n', text.trim() || text);
         console.log('\nExpected:\n%s\n', html.trim() || html);
@@ -155,7 +152,7 @@ main:
   }
 
   console.log('%d/%d tests completed successfully.', complete, len);
-  if (failed) console.log('%d/%d tests failed.', failed, len);
+  if (failed) {console.log('%d/%d tests failed.', failed, len);}
 
   // Tests currently failing.
   if (~failures.indexOf('def_blocks.text')) {
@@ -177,9 +174,9 @@ function bench(name, func) {
 
     // Change certain tests to allow
     // comparison to older benchmark times.
-    fs.readdirSync(__dirname + '/new').forEach(function(name) {
-      if (path.extname(name) === '.html') return;
-      if (name === 'main.text') return;
+    fs.readdirSync(__dirname + '/new').forEach(function (name) {
+      if (path.extname(name) === '.html') {return;}
+      if (name === 'main.text') {return;}
       delete files[name];
     });
 
@@ -190,13 +187,11 @@ function bench(name, func) {
     files['main.text'].text = files['main.text'].text.replace('* * *\n\n', '');
   }
 
-  var start = Date.now()
-    , times = 1000
-    , keys = Object.keys(files)
-    , i
-    , l = keys.length
-    , filename
-    , file;
+  var start = Date.now(),
+    times = 1000,
+    keys = Object.keys(files),
+    i, l = keys.length,
+    filename, file;
 
   while (times--) {
     for (i = 0; i < l; i++) {
@@ -214,7 +209,7 @@ function bench(name, func) {
  */
 
 function runBench(options) {
-  var options = options || {};
+  options = options || {};
 
   // Non-GFM, Non-pedantic
   marked.setOptions({
@@ -223,7 +218,7 @@ function runBench(options) {
     breaks: false,
     pedantic: false,
     sanitize: false,
-    smartLists: false
+    smartLists: false,
   });
   if (options.marked) {
     marked.setOptions(options.marked);
@@ -237,7 +232,7 @@ function runBench(options) {
     breaks: false,
     pedantic: false,
     sanitize: false,
-    smartLists: false
+    smartLists: false,
   });
   if (options.marked) {
     marked.setOptions(options.marked);
@@ -260,9 +255,9 @@ function runBench(options) {
 
   // robotskirt
   try {
-    bench('robotskirt', (function() {
+    bench('robotskirt', (function () {
       var rs = require('robotskirt');
-      return function(text) {
+      return function (text) {
         var parser = rs.Markdown.std();
         return parser.render(text);
       };
@@ -273,16 +268,16 @@ function runBench(options) {
 
   // showdown
   try {
-    bench('showdown (reuse converter)', (function() {
+    bench('showdown (reuse converter)', (function () {
       var Showdown = require('showdown');
       var convert = new Showdown.converter();
-      return function(text) {
+      return function (text) {
         return convert.makeHtml(text);
       };
     })());
-    bench('showdown (new converter)', (function() {
+    bench('showdown (new converter)', (function () {
       var Showdown = require('showdown');
-      return function(text) {
+      return function (text) {
         var convert = new Showdown.converter();
         return convert.makeHtml(text);
       };
@@ -304,7 +299,8 @@ function runBench(options) {
  */
 
 function time(options) {
-  var options = options || {};
+  options = options || {};
+
   if (options.marked) {
     marked.setOptions(options.marked);
   }
@@ -321,22 +317,20 @@ function time(options) {
  *   conformance.
  */
 
-function fix(options) {
-  ['tests', 'original', 'new'].forEach(function(dir) {
+function fix() {
+  ['tests', 'original', 'new'].forEach(function (dir) {
     try {
       fs.mkdirSync(path.resolve(__dirname, dir), 0755);
-    } catch (e) {
-      ;
-    }
+    } catch (e) {}
   });
 
   // rm -rf tests
-  fs.readdirSync(path.resolve(__dirname, 'tests')).forEach(function(file) {
+  fs.readdirSync(path.resolve(__dirname, 'tests')).forEach(function (file) {
     fs.unlinkSync(path.resolve(__dirname, 'tests', file));
   });
 
   // cp -r original tests
-  fs.readdirSync(path.resolve(__dirname, 'original')).forEach(function(file) {
+  fs.readdirSync(path.resolve(__dirname, 'original')).forEach(function (file) {
     var nfile = file;
     if (file.indexOf('hard_wrapped_paragraphs_with_list_like_lines.') === 0) {
       nfile = file.replace(/\.(text|html)$/, '.nogfm.$1');
@@ -348,11 +342,11 @@ function fix(options) {
   // node fix.js
   var dir = __dirname + '/tests';
 
-  fs.readdirSync(dir).filter(function(file) {
+  fs.readdirSync(dir).filter(function (file) {
     return path.extname(file) === '.html';
-  }).forEach(function(file) {
-    var file = path.join(dir, file)
-      , html = fs.readFileSync(file, 'utf8');
+  }).forEach(function (file) {
+    file = path.join(dir, file);
+    var html = fs.readFileSync(file, 'utf8');
 
     // fix unencoded quotes
     html = html
@@ -364,7 +358,7 @@ function fix(options) {
       .replace(/&__APOS__;/g, '\'');
 
     // add heading id's
-    html = html.replace(/<(h[1-6])>([^<]+)<\/\1>/g, function(s, h, text) {
+    html = html.replace(/<(h[1-6])>([^<]+)<\/\1>/g, function (s, h, text) {
       var id = text
         .replace(/&#39;/g, '\'')
         .replace(/&quot;/g, '"')
@@ -372,7 +366,7 @@ function fix(options) {
         .replace(/&lt;/g, '<')
         .replace(/&amp;/g, '&');
 
-      id = id.toLowerCase().replace(/[^\w]+/g, '-');
+      id = id.toLowerCase().replace(/[^\w]+/g,  '-');
 
       return '<' + h + ' id="' + id + '">' + text + '</' + h + '>';
     });
@@ -381,9 +375,9 @@ function fix(options) {
   });
 
   // turn <hr /> into <hr>
-  fs.readdirSync(dir).forEach(function(file) {
-    var file = path.join(dir, file)
-      , text = fs.readFileSync(file, 'utf8');
+  fs.readdirSync(dir).forEach(function (file) {
+    file = path.join(dir, file);
+    var text = fs.readFileSync(file, 'utf8');
 
     text = text.replace(/(<|&lt;)hr\s*\/(>|&gt;)/g, '$1hr$2');
 
@@ -392,7 +386,7 @@ function fix(options) {
 
   // markdown does some strange things.
   // it does not encode naked `>`, marked does.
-  (function() {
+  (function () {
     var file = dir + '/amps_and_angles_encoding.html';
     var html = fs.readFileSync(file, 'utf8')
       .replace('6 > 5.', '6 &gt; 5.');
@@ -401,7 +395,7 @@ function fix(options) {
   })();
 
   // cp new/* tests/
-  fs.readdirSync(path.resolve(__dirname, 'new')).forEach(function(file) {
+  fs.readdirSync(path.resolve(__dirname, 'new')).forEach(function (file) {
     fs.writeFileSync(path.resolve(__dirname, 'tests', file),
       fs.readFileSync(path.resolve(__dirname, 'new', file)));
   });
@@ -412,10 +406,11 @@ function fix(options) {
  */
 
 function parseArg(argv) {
-  var argv = process.argv.slice(2)
-    , options = {}
-    , orphans = []
-    , arg;
+  argv = process.argv.slice(2);
+  var options = {};
+  var orphans = [];
+  var arg;
+
 
   function getarg() {
     var arg = argv.shift();
@@ -431,7 +426,7 @@ function parseArg(argv) {
     } else if (arg[0] === '-') {
       if (arg.length > 2) {
         // e.g. -abc
-        argv = arg.substring(1).split('').map(function(ch) {
+        argv = arg.substring(1).split('').map(function (ch) {
           return '-' + ch;
         }).concat(argv);
         arg = argv.shift();
@@ -448,58 +443,45 @@ function parseArg(argv) {
   while (argv.length) {
     arg = getarg();
     switch (arg) {
-      case '-f':
-      case '--fix':
-      case 'fix':
-        options.fix = true;
-        break;
-      case '-b':
-      case '--bench':
-        options.bench = true;
-        break;
-      case '-s':
-      case '--stop':
-        options.stop = true;
-        break;
-      case '-t':
-      case '--time':
-        options.time = true;
-        break;
-      default:
-        if (arg.indexOf('--') === 0) {
-          opt = camelize(arg.replace(/^--(no-)?/, ''));
-          if (!marked.defaults.hasOwnProperty(opt)) {
-            continue;
-          }
-          options.marked = options.marked || {};
-          if (arg.indexOf('--no-') === 0) {
-            options.marked[opt] = typeof marked.defaults[opt] !== 'boolean'
-              ? null
-              : false;
-          } else {
-            options.marked[opt] = typeof marked.defaults[opt] !== 'boolean'
-              ? argv.shift()
-              : true;
-          }
-        } else {
-          orphans.push(arg);
+    case '-f':
+    case '--fix':
+    case 'fix':
+      options.fix = true;
+      break;
+    case '-b':
+    case '--bench':
+      options.bench = true;
+      break;
+    case '-s':
+    case '--stop':
+      options.stop = true;
+      break;
+    case '-t':
+    case '--time':
+      options.time = true;
+      break;
+    default:
+      if (arg.indexOf('--') === 0) {
+        var opt = utils.camelize(arg.replace(/^--(no-)?/, ''));
+        if (!marked.defaults.hasOwnProperty(opt)) {
+          continue;
         }
-        break;
+        options.marked = options.marked || {};
+        if (arg.indexOf('--no-') === 0) {
+          options.marked[opt] = typeof marked.defaults[opt] !== 'boolean' ? null : false;
+        } else {
+          options.marked[opt] = typeof marked.defaults[opt] !== 'boolean' ? argv.shift() : true;
+        }
+      } else {
+        orphans.push(arg);
+      }
+      break;
     }
   }
 
   return options;
 }
 
-/**
- * Helpers
- */
-
-function camelize(text) {
-  return text.replace(/(\w)-(\w)/g, function(_, a, b) {
-    return a + b.toUpperCase();
-  });
-}
 
 /**
  * Main

@@ -1,22 +1,49 @@
 {
-  "name": "marked",
-  "description": "A markdown parser built for speed",
-  "author": "Christopher Jeffrey",
-  "version": "0.3.2",
-  "main": "./lib/marked.js",
-  "bin": "./bin/marked",
-  "man": "./man/marked.1",
-  "preferGlobal": true,
-  "repository": "git://github.com/chjj/marked.git",
-  "homepage": "https://github.com/chjj/marked",
-  "bugs": { "url": "http://github.com/chjj/marked/issues" },
-  "license": "MIT",
-  "keywords": ["markdown", "markup", "html"],
-  "tags": ["markdown", "markup", "html"],
-  "devDependencies": {
-    "markdown": "*",
-    "showdown": "*",
-    "robotskirt": "*"
+  "name": "remarked",
+  "description": "Markdown parser and lexer (fork of marked.js).",
+  "version": "0.1.1-beta",
+  "homepage": "https://github.com/jonschlinkert/remarked",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
   },
-  "scripts": { "test": "node test", "bench": "node test --bench" }
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jonschlinkert/remarked.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/remarked/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jonschlinkert/remarked/blob/master/LICENSE-MIT"
+    }
+  ],
+  "keywords": [
+    "docs",
+    "documentation",
+    "markdown",
+    "marked"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.8"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "devDependencies": {
+    "chai": "~1.9.1",
+    "fs-utils": "^0.4.3",
+    "gulp": "^3.6.2",
+    "gulp-jshint": "^1.5.5",
+    "gulp-mocha": "^0.4.1",
+    "js-beautify": "^1.5.1",
+    "lodash": "^2.4.1",
+    "mocha": "~1.18.2"
+  },
+  "dependencies": {
+    "template": "^0.2.1"
+  }
 }
