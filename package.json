@@ -1,7 +1,7 @@
 {
   "name": "remarked",
-  "description": "Markdown parser and lexer (fork of marked.js).",
-  "version": "0.1.1-beta",
+  "description": "Markdown parser and lexer. This is a fork of marked.js maintained for Assemble.",
+  "version": "0.1.1",
   "homepage": "https://github.com/jonschlinkert/remarked",
   "author": {
     "name": "Jon Schlinkert",
@@ -20,11 +20,18 @@
       "url": "https://github.com/jonschlinkert/remarked/blob/master/LICENSE-MIT"
     }
   ],
+  "bin": {
+    "deps": "./bin/remarked.js"
+  },
   "keywords": [
+    "compile",
+    "compiler",
     "docs",
     "documentation",
     "markdown",
-    "marked"
+    "marked",
+    "parse",
+    "parser"
   ],
   "main": "index.js",
   "engines": {

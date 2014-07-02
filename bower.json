@@ -1,6 +1,6 @@
 {
-  "name": "slapdash",
-  "version": "0.1.0-beta",
+  "name": "remarked",
+  "version": "0.1.1",
   "main": [
     "index.js"
   ]

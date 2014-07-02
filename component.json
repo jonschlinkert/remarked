@@ -1,10 +1,14 @@
 {
-  "name": "marked",
-  "version": "0.3.2",
-  "repo": "chjj/marked",
-  "description": "A markdown parser built for speed",
-  "keywords": ["markdown", "markup", "html"],
-  "scripts": ["lib/marked.js"],
-  "main": "lib/marked.js",
+  "name": "remarked",
+  "description": "Markdown parser and lexer. This is a fork of marked.js maintained for Assemble.",
+  "version": "0.1.1",
+  "repo": "jonschlinkert/remarked",
+  "keywords": [
+    "markdown",
+    "markup",
+    "html"
+  ],
+  "scripts": ["index.js"],
+  "main": "index.js",
   "license": "MIT"
 }
