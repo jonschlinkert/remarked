@@ -1,5 +1,5 @@
 /**
- * slapdash <https://github.com/jonschlinkert/slapdash>
+ * remarked <https://github.com/jonschlinkert/remarked>
  *
  * Copyright (c) 2014 Jon Schlinkert, contributors.
  * Licensed under the MIT license.

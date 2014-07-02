@@ -1,4 +1,9 @@
 /*!
+ * remarked <https://github.com/jonschlinkert/remarked>
+ *
+ * Copyright (c) 2014 Jon Schlinkert
+ * Licensed under the MIT license.
+ *
  * Based on marked <https://github.com/chjj/marked>
  * Copyright (c) 2011-2014, Christopher Jeffrey, contributors.
  * Released under the MIT License (MIT)
@@ -15,10 +20,10 @@ var defaults = require('./lib/defaults');
 var utils = require('./lib/utils/helpers');
 
 /**
- * slapdash
+ * remarked
  */
 
-function slapdash(src, options, callback) {
+function remarked(src, options, callback) {
   if (callback || typeof options === 'function') {
     if (!callback) {
       callback = options;
@@ -95,7 +100,7 @@ function slapdash(src, options, callback) {
     }
     return Parser.parse(Lexer.lex(src, options), options);
   } catch (e) {
-    e.message += '\n[slapdash]: please report this to https://github.com/jonschlinkert/slapdash.';
+    e.message += '\n[remarked]: please report this to https://github.com/jonschlinkert/remarked.';
     if ((options || defaults).silent) {
       return '<p>An error occured:</p><pre>' + utils._escape(e.message + '', true) + '</pre>';
     }
@@ -107,12 +112,12 @@ function slapdash(src, options, callback) {
  * options
  */
 
-slapdash.options = slapdash.setOptions = function(options) {
+remarked.options = remarked.setOptions = function(options) {
   utils._merge(defaults, options);
-  return slapdash;
+  return remarked;
 };
 
-slapdash.defaults = defaults;
+remarked.defaults = defaults;
 
 
 
@@ -120,19 +125,19 @@ slapdash.defaults = defaults;
  * Expose
  */
 
-slapdash.Parser = Parser;
-slapdash.parser = Parser.parse;
+remarked.Parser = Parser;
+remarked.parser = Parser.parse;
 
-slapdash.Renderer = Renderer;
+remarked.Renderer = Renderer;
 
-slapdash.Lexer = Lexer;
-slapdash.lexer = Lexer.lex;
+remarked.Lexer = Lexer;
+remarked.lexer = Lexer.lex;
 
-slapdash.InlineLexer = InlineLexer
-slapdash.inlineLexer = InlineLexer.output;
+remarked.InlineLexer = InlineLexer
+remarked.inlineLexer = InlineLexer.output;
 
 
-slapdash.parse = slapdash;
+remarked.parse = remarked;
 
-// Export slapdash
-module.exports = slapdash;
+// Export remarked
+module.exports = remarked;

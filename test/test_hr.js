@@ -1,5 +1,5 @@
 /**
- * slapdash <https://github.com/jonschlinkert/slapdash>
+ * remarked <https://github.com/jonschlinkert/remarked>
  *
  * Copyright (c) 2014 Jon Schlinkert, contributors.
  * Licensed under the MIT license.
@@ -8,13 +8,12 @@
 const expect = require('chai').expect;
 const marked = require('../');
 const helper = require('./helpers/utils');
-var normalize = helper.normalize;
+const normalize = helper.normalize;
 
 
 /**
  * horizontal rules
  */
-
 
 describe('hr', function () {
   describe('horizontal_rules', function () {
@@ -29,7 +28,6 @@ describe('hr', function () {
       done();
     });
   });
-
 
   describe('hr_list_break', function () {
     it('should convert hr_list_break', function (done) {

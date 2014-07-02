@@ -1,5 +1,5 @@
 /**
- * slapdash <https://github.com/jonschlinkert/slapdash>
+ * remarked <https://github.com/jonschlinkert/remarked>
  *
  * Copyright (c) 2014 Jon Schlinkert, contributors.
  * Licensed under the MIT license.
@@ -8,13 +8,12 @@
 const expect = require('chai').expect;
 const marked = require('../');
 const helper = require('./helpers/utils');
-var normalize = helper.normalize;
+const normalize = helper.normalize;
 
 
 /**
  * emphasis
  */
-
 
 describe('emphasis', function () {
   describe('nested_em', function () {

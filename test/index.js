@@ -14,17 +14,8 @@ var fs = require('fs');
 var path = require('path');
 var _ = require('lodash');
 var marked = require('../');
+var helpers = require('./helpers/utils');
 
-
-/**
- * Helpers
- */
-
-function camelize(text) {
-  return text.replace(/(\w)-(\w)/g, function (_, a, b) {
-    return a + b.toUpperCase();
-  });
-}
 
 
 /**
@@ -472,7 +463,7 @@ function parseArg(argv) {
       break;
     default:
       if (arg.indexOf('--') === 0) {
-        var opt = camelize(arg.replace(/^--(no-)?/, ''));
+        var opt = utils.camelize(arg.replace(/^--(no-)?/, ''));
         if (!marked.defaults.hasOwnProperty(opt)) {
           continue;
         }

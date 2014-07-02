@@ -7,6 +7,17 @@ var file = require('fs-utils');
 var utils = module.exports = {};
 
 
+/**
+ * Helpers
+ */
+
+utils.camelize = function(text) {
+  return text.replace(/(\w)-(\w)/g, function (_, a, b) {
+    return a + b.toUpperCase();
+  });
+};
+
+
 utils.h1 = function(text, lvl, id) {
   return '<level'+lvl+' id="'+id+'">'+text+'</level'+lvl+'>';
 };

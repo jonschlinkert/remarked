@@ -1,5 +1,5 @@
 /**
- * slapdash <https://github.com/jonschlinkert/slapdash>
+ * remarked <https://github.com/jonschlinkert/remarked>
  *
  * Copyright (c) 2014 Jon Schlinkert, contributors.
  * Licensed under the MIT license.
@@ -8,15 +8,14 @@
 const expect = require('chai').expect;
 const marked = require('../');
 const helper = require('./helpers/utils');
-var normalize = helper.normalize;
+const normalize = helper.normalize;
 
 
 /**
  * Custom
  */
 
-
-describe('slapdash', function () {
+describe('remarked', function () {
   describe('when a string is passed', function () {
     it('should be parsed as markdown and return HTML', function (done) {
       var fixture = 'foo';
