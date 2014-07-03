@@ -22,7 +22,7 @@ describe('remarked', function () {
     it('should be parsed as markdown and return HTML', function (done) {
       var fixture = 'foo';
       var actual = remarked(fixture);
-      helper.writeActual('extras/inline', 'string', actual);
+      helper.writeActual('inline/string', actual);
       expect(actual).to.deep.equal('<p>foo</p>\n');
       done();
     });
@@ -32,7 +32,7 @@ describe('remarked', function () {
     it('should return HTML with standard ', function (done) {
       var fixture = '**foo**';
       var actual = remarked(fixture);
-      helper.writeActual('extras/inline', 'bold', actual);
+      helper.writeActual('inline/bold', actual);
       expect(actual).to.deep.equal('<p><strong>foo</strong></p>\n');
       done();
     });
@@ -42,7 +42,7 @@ describe('remarked', function () {
     it('should return customized HTML', function (done) {
       var fixture = '# One (Two) | Three';
       var actual = remarked(fixture);
-      helper.writeActual('extras/inline', 'heading-with-junk', actual);
+      helper.writeActual('inline/heading-with-junk', actual);
       expect(actual).to.deep.equal('<h1 id="one-two-three">One (Two) | Three</h1>\n');
       done();
     });
@@ -52,7 +52,7 @@ describe('remarked', function () {
     xit('should return customized HTML', function (done) {
       var fixture = '```css\n.foo {color: red;}```';
       var actual = remarked(fixture);
-      helper.writeActual('extras/inline', 'code-block-css', actual);
+      helper.writeActual('inline/code-block-css', actual);
       expect(actual).to.deep.equal('.foo {color: red;}');
       done();
     });
@@ -66,7 +66,7 @@ describe('remarked', function () {
 
       var fixture = '```css\n.foo {color: red;}```';
       var actual = remarked(fixture, {highlight: highlight});
-      helper.writeActual('extras/inline', 'highlight-explicit-lang-css', actual);
+      helper.writeActual('inline/highlight-explicit-lang-css', actual);
       expect(actual).to.deep.equal('.foo {color: red;}');
       done();
     });
@@ -76,7 +76,7 @@ describe('remarked', function () {
     xit('should return customized HTML', function (done) {
       var fixture = '```less\n.foo {color: red;}```';
       var actual = remarked(fixture);
-      helper.writeActual('extras/inline', 'highlight-explicit-lang-less', actual);
+      helper.writeActual('inline/highlight-explicit-lang-less', actual);
       expect(actual).to.deep.equal('.foo {color: red;}');
       done();
     });

@@ -24,7 +24,7 @@ describe('lists', function () {
       var fixture = helper.readFile(testfile + '.md');
       var actual = remarked(fixture, {gfm: false});
 
-      helper.writeActual('extras', testfile, actual);
+      helper.writeActual(testfile, actual);
       var expected = helper.readFile(testfile + '.html');
       expect(normalize(actual)).to.equal(normalize(expected));
       done();
@@ -37,7 +37,7 @@ describe('lists', function () {
       var fixture = helper.readFile(testfile + '.md');
       var actual = remarked(fixture);
 
-      helper.writeActual('extras', testfile, actual);
+      helper.writeActual(testfile, actual);
       var expected = helper.readFile(testfile + '.html');
       expect(normalize(actual)).to.equal(normalize(expected));
       done();
@@ -50,7 +50,7 @@ describe('lists', function () {
       var fixture = helper.readFile(testfile + '.md');
       var actual = remarked(fixture);
 
-      helper.writeActual('extras', testfile, actual);
+      helper.writeActual(testfile, actual);
       var expected = helper.readFile(testfile + '.html');
       expect(normalize(actual)).to.equal(normalize(expected));
       done();
@@ -63,7 +63,7 @@ describe('lists', function () {
       var fixture = helper.readFile(testfile + '.md');
       var actual = remarked(fixture);
 
-      helper.writeActual('extras', testfile, actual);
+      helper.writeActual(testfile, actual);
       var expected = helper.readFile(testfile + '.html');
       expect(normalize(actual)).to.equal(normalize(expected));
       done();
@@ -77,7 +77,7 @@ describe('lists', function () {
       var fixture = helper.readFile(testfile + '.md');
       var actual = remarked(fixture);
 
-      helper.writeActual('extras', testfile, actual);
+      helper.writeActual(testfile, actual);
       var expected = helper.readFile(testfile + '.html');
       expect(normalize(actual)).to.equal(normalize(expected));
       done();
@@ -91,7 +91,7 @@ describe('lists', function () {
       var fixture = helper.readFile(testfile + '.md');
       var actual = remarked(fixture);
 
-      helper.writeActual('extras', testfile, actual);
+      helper.writeActual(testfile, actual);
       var expected = helper.readFile(testfile + '.html');
       expect(normalize(actual)).to.equal(normalize(expected));
       done();

@@ -35,7 +35,7 @@ xdescribe('def_blocks', function () {
     var fixture = helper.readFile('def_blocks' + '.md');
     var actual = remarked(fixture);
 
-    helper.writeActual('extras', 'def_blocks', actual);
+    helper.writeActual('def_blocks', actual);
     var expected = helper.readFile('def_blocks' + '.html');
     expect(normalize(actual)).to.equal(normalize(expected));
   });
