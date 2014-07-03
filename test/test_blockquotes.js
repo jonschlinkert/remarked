@@ -12,7 +12,7 @@ var remarked = require('../');
 var helper = require('./helpers/utils');
 var normalize = helper.normalize;
 
-console.log(remarked)
+// console.log(remarked)
 
 
 /**

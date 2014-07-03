@@ -21,25 +21,15 @@ describe('links', function () {
 
   describe('autolinks', function () {
     it('should convert autolinks to a tags, wrapped in paragraph tags', function (done) {
-      var fixture = '<http://example.com>';
-      var actual = remarked(fixture);
+      var actual = remarked('<http://example.com>');
       var expected = '<p><a href="http://example.com">http://example.com</a></p>\n';
       expect(normalize(actual)).to.equal(normalize(expected));
       done();
     });
 
     it('should preserve newlines when converting mixed paragraph text and autolinks', function (done) {
-      var fixture = [
-        'hello world',
-        '<http://example.com>'
-      ].join('\n');
-      var actual = remarked(fixture);
-
-      var expected = [
-        '<p>hello world',
-        '<a href="http://example.com">http://example.com</a></p>',
-        ''
-      ].join('\n');
+      var actual = remarked('hello world\n<http://example.com>');
+      var expected = '<p>hello world\n<a href="http://example.com">http://example.com</a></p>\n';
       expect(normalize(actual)).to.equal(normalize(expected));
       done();
     });
