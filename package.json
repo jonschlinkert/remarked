@@ -51,6 +51,7 @@
     "mocha": "~1.18.2"
   },
   "dependencies": {
+    "regexp-special-chars": "^0.1.0",
     "strings": "^0.4.1",
     "template": "^0.2.1"
   }

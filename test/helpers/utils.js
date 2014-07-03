@@ -39,7 +39,7 @@ utils.normalize = function(str) {
 };
 
 
-utils.writeActual = function(dir, test, actual) {
-  var dest = path.join('test/actual', dir, test + '.html');
-  file.writeFileSync(dest, actual);
+utils.writeActual = function(test, filename) {
+  var dest = path.join('test/actual', test + '.html');
+  file.writeFileSync(dest, filename);
 };
