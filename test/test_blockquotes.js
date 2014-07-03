@@ -20,7 +20,6 @@ var normalize = helper.normalize;
  */
 
 describe('blockquotes:', function () {
-
   describe('when an angle bracket is the first thing on a line', function () {
     it('should convert to a blockquote', function (done) {
       var fixture = '> This is a blockquote';

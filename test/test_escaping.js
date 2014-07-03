@@ -39,7 +39,13 @@ describe('escaping', function () {
     });
 
     it('it should be preserved in the rendered HTML', function (done) {
-      var actual = remarked('\\<\\>', {sanitize: true});
+      var actual = remarked('\\<');
+      expect(actual).to.deep.equal('<p><</p>\n');
+      done();
+    });
+
+    it('it should be preserved in the rendered HTML', function (done) {
+      var actual = remarked('\\<\\>');
       expect(actual).to.deep.equal('<p><></p>\n');
       done();
     });
