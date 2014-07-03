@@ -10,31 +10,21 @@
 npm i remarked --save
 ```
 
-## Goals
-
-- [x] Unit tests
-- [ ] Better test coverage (started). Many more tests are needed, I'd also like to move the code inline instead of reading from files wherever reasonable.
-- [x] Cleaner more organized code-base (started)
-- [ ] Well-commented code
-- [ ] Remove extra tags/attributes from generated HTML (e.g. heading ids) (started)
-- [ ] Refactor options handling
-- [ ] Allow extensions/plugins
-
 ## Why?
 
-Assemble used marked.js extensively, but given the massive amount of time and effort that we've put into fixing marked-related issues (due to breaking changes that were introduced without bumping the minor version), we've decided to maintain a fork so that our user base can have a more reliable experience going forward.
+Assemble used marked.js extensively, but given the massive amount of time and effort that we've put into fixing marked-related issues (due to breaking changes that are introduced to marked.js without bumping the minor version), we've decided to maintain a fork so that our user base can have a more reliable experience going forward.
 
 ## Author
 
 
 **Jon Schlinkert**
- 
+
 + [github/jonschlinkert](https://github.com/jonschlinkert)
-+ [twitter/jonschlinkert](http://twitter.com/jonschlinkert) 
++ [twitter/jonschlinkert](http://twitter.com/jonschlinkert)
 
 ## License
 
-Copyright (c) 2014 Jon Schlinkert, contributors.  
+Copyright (c) 2014 Jon Schlinkert, contributors.
 Released under the MIT license
 
 > Based on marked <https://github.com/chjj/marked>

@@ -5,10 +5,12 @@
  * Licensed under the MIT license.
  */
 
-const expect = require('chai').expect;
-const marked = require('../');
-const helper = require('./helpers/utils');
-const normalize = helper.normalize;
+'use strict';
+
+var expect = require('chai').expect;
+var remarked = require('../');
+var helper = require('./helpers/utils');
+var normalize = helper.normalize;
 
 
 /**
@@ -20,7 +22,7 @@ describe('emphasis', function () {
     it('should convert nested_em', function (done) {
       var testfile = 'nested_em';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
@@ -33,7 +35,7 @@ describe('emphasis', function () {
     it('should convert strong_and_em_together', function (done) {
       var testfile = 'strong_and_em_together';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');

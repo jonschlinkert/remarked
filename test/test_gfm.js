@@ -5,10 +5,12 @@
  * Licensed under the MIT license.
  */
 
-const expect = require('chai').expect;
-const marked = require('../');
-const helper = require('./helpers/utils');
-const normalize = helper.normalize;
+'use strict';
+
+var expect = require('chai').expect;
+var remarked = require('../');
+var helper = require('./helpers/utils');
+var normalize = helper.normalize;
 
 
 /**
@@ -20,7 +22,7 @@ describe('gfm:', function () {
     it('should convert gfm_toplevel_paragraphs', function (done) {
       var testfile = 'gfm_toplevel_paragraphs';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
@@ -33,7 +35,7 @@ describe('gfm:', function () {
     it('should convert gfm_break', function (done) {
       var testfile = 'gfm_break.breaks';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
@@ -46,7 +48,7 @@ describe('gfm:', function () {
     it('should convert gfm_code', function (done) {
       var testfile = 'gfm_code';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
@@ -59,7 +61,7 @@ describe('gfm:', function () {
     it('should convert gfm_code_hr_list', function (done) {
       var testfile = 'gfm_code_hr_list';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
@@ -72,7 +74,7 @@ describe('gfm:', function () {
     it('should convert gfm_del', function (done) {
       var testfile = 'gfm_del';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
@@ -85,7 +87,7 @@ describe('gfm:', function () {
     it('should convert gfm_em', function (done) {
       var testfile = 'gfm_em';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
@@ -98,7 +100,7 @@ describe('gfm:', function () {
     it('should convert gfm_links', function (done) {
       var testfile = 'gfm_links';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
@@ -111,7 +113,7 @@ describe('gfm:', function () {
     it('should convert gfm_tables', function (done) {
       var testfile = 'gfm_tables';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');

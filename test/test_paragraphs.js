@@ -5,10 +5,12 @@
  * Licensed under the MIT license.
  */
 
-const expect = require('chai').expect;
-const marked = require('../');
-const helper = require('./helpers/utils');
-const normalize = helper.normalize;
+'use strict';
+
+var expect = require('chai').expect;
+var remarked = require('../');
+var helper = require('./helpers/utils');
+var normalize = helper.normalize;
 
 
 /**
@@ -19,7 +21,7 @@ describe('paragraphs', function () {
 
   describe('when a simple string is passed', function () {
     it('it should be wrapped in paragraph tags, ending with a newline', function (done) {
-      var actual = marked('foo');
+      var actual = remarked('foo');
       expect(actual).to.deep.equal('<p>foo</p>\n');
       done();
     });

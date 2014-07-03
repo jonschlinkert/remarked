@@ -46,7 +46,7 @@ Markdown is intended to be as easy-to-read and easy-to-write as is feasible.
 
 Readability, however, is emphasized above all else. A Markdown-formatted
 document should be publishable as-is, as plain text, without looking
-like it's been marked up with tags or formatting instructions. While
+like it's been remarked up with tags or formatting instructions. While
 Markdown's syntax has been influenced by several existing text-to-HTML
 filters -- including [Setext] [1], [atx] [2], [Textile] [3], [reStructuredText] [4],
 [Grutatext] [5], and [EtText] [6] -- the single biggest source of
@@ -254,7 +254,7 @@ wrap the text and put a `>` before every line:
     > This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
     > consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
     > Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
-    > 
+    >
     > Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
     > id sem consectetuer libero luctus adipiscing.
 
@@ -281,12 +281,12 @@ Blockquotes can contain other Markdown elements, including headers, lists,
 and code blocks:
 
 	> ## This is a header.
-	> 
+	>
 	> 1.   This is the first list item.
 	> 2.   This is the second list item.
-	> 
+	>
 	> Here's some example code:
-	> 
+	>
 	>     return shell_exec("echo $input | $markdown_script");
 
 Any decent text editor should make email-style quoting easy. For
@@ -531,7 +531,7 @@ following lines will produce a horizontal rule:
     ***
 
     *****
-	
+
     - - -
 
     ---------------------------------------
@@ -632,7 +632,7 @@ multiple words in the link text:
 	Visit [Daring Fireball][] for more information.
 
 And then define the link:
-	
+
 	[Daring Fireball]: http://daringfireball.net/
 
 Link definitions can be placed anywhere in your Markdown document. I
@@ -756,13 +756,13 @@ one after the opening, one before the closing. This allows you to place
 literal backtick characters at the beginning or end of a code span:
 
 	A single backtick in a code span: `` ` ``
-	
+
 	A backtick-delimited string in a code span: `` `foo` ``
 
 will produce:
 
 	<p>A single backtick in a code span: <code>`</code></p>
-	
+
 	<p>A backtick-delimited string in a code span: <code>`foo`</code></p>
 
 With a code span, ampersands and angle brackets are encoded as HTML
@@ -833,7 +833,7 @@ use regular HTML `<img>` tags.
 Markdown supports a shortcut style for creating "automatic" links for URLs and email addresses: simply surround the URL or email address with angle brackets. What this means is that if you want to show the actual text of a URL or email address, and also have it be a clickable link, you can do this:
 
     <http://example.com/>
-    
+
 Markdown will turn this into:
 
     <a href="http://example.com/">http://example.com/</a>

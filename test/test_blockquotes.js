@@ -5,10 +5,14 @@
  * Licensed under the MIT license.
  */
 
-const expect = require('chai').expect;
-const marked = require('../');
-const helper = require('./helpers/utils');
-const normalize = helper.normalize;
+'use strict';
+
+var expect = require('chai').expect;
+var remarked = require('../');
+var helper = require('./helpers/utils');
+var normalize = helper.normalize;
+
+console.log(remarked)
 
 
 /**
@@ -20,7 +24,7 @@ describe('blockquotes:', function () {
   describe('when an angle bracket is the first thing on a line', function () {
     it('should convert to a blockquote', function (done) {
       var fixture = '> This is a blockquote';
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       var expected = '<blockquote>\n<p>This is a blockquote</p>\n</blockquote>\n';
       expect(normalize(actual)).to.equal(normalize(expected));
@@ -32,7 +36,7 @@ describe('blockquotes:', function () {
     it('should convert blockquote_list_item', function (done) {
       var testfile = 'blockquote_list_item';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
@@ -45,7 +49,7 @@ describe('blockquotes:', function () {
     it('should convert blockquotes_with_code_blocks', function (done) {
       var testfile = 'blockquotes_with_code_blocks';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
@@ -58,7 +62,7 @@ describe('blockquotes:', function () {
     it('should convert lazy_blockquotes', function (done) {
       var testfile = 'lazy_blockquotes';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
@@ -71,7 +75,7 @@ describe('blockquotes:', function () {
     it('should convert nested_blockquotes', function (done) {
       var testfile = 'nested_blockquotes';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
@@ -85,7 +89,7 @@ describe('blockquotes:', function () {
     it('should convert blockquotes_embedded_lists', function (done) {
       var testfile = 'blockquotes_embedded_lists';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');

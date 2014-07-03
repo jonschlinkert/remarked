@@ -5,10 +5,12 @@
  * Licensed under the MIT license.
  */
 
-const expect = require('chai').expect;
-const marked = require('../');
-const helper = require('./helpers/utils');
-const normalize = helper.normalize;
+'use strict';
+
+var expect = require('chai').expect;
+var remarked = require('../');
+var helper = require('./helpers/utils');
+var normalize = helper.normalize;
 
 
 /**
@@ -19,7 +21,7 @@ describe('remarked', function () {
   describe('when a string is passed', function () {
     it('should be parsed as markdown and return HTML', function (done) {
       var fixture = 'foo';
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
       helper.writeActual('extras/inline', 'string', actual);
       expect(actual).to.deep.equal('<p>foo</p>\n');
       done();
@@ -29,7 +31,7 @@ describe('remarked', function () {
   describe('when a heading is passed', function () {
     it('should return HTML with standard ', function (done) {
       var fixture = '**foo**';
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
       helper.writeActual('extras/inline', 'bold', actual);
       expect(actual).to.deep.equal('<p><strong>foo</strong></p>\n');
       done();
@@ -39,7 +41,7 @@ describe('remarked', function () {
   describe('when a custom heading with random junk is passed', function () {
     it('should return customized HTML', function (done) {
       var fixture = '# One (Two) | Three';
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
       helper.writeActual('extras/inline', 'heading-with-junk', actual);
       expect(actual).to.deep.equal('<h1 id="one-two-three">One (Two) | Three</h1>\n');
       done();
@@ -49,7 +51,7 @@ describe('remarked', function () {
   describe('when code is passed with an explicitly defined language', function () {
     xit('should return customized HTML', function (done) {
       var fixture = '```css\n.foo {color: red;}```';
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
       helper.writeActual('extras/inline', 'code-block-css', actual);
       expect(actual).to.deep.equal('.foo {color: red;}');
       done();
@@ -63,7 +65,7 @@ describe('remarked', function () {
       };
 
       var fixture = '```css\n.foo {color: red;}```';
-      var actual = marked(fixture, {highlight: highlight});
+      var actual = remarked(fixture, {highlight: highlight});
       helper.writeActual('extras/inline', 'highlight-explicit-lang-css', actual);
       expect(actual).to.deep.equal('.foo {color: red;}');
       done();
@@ -73,7 +75,7 @@ describe('remarked', function () {
   describe('when code is passed with an explicitly defined custom language', function () {
     xit('should return customized HTML', function (done) {
       var fixture = '```less\n.foo {color: red;}```';
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
       helper.writeActual('extras/inline', 'highlight-explicit-lang-less', actual);
       expect(actual).to.deep.equal('.foo {color: red;}');
       done();

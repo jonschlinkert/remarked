@@ -17,6 +17,7 @@ var Lexer = require('./lib/lexer-block');
 var InlineLexer = require('./lib/lexer-inline');
 var Renderer = require('./lib/renderer');
 var utils = require('./lib/utils/helpers');
+var merge = require('./lib/utils/merge');
 
 
 /**
@@ -24,13 +25,13 @@ var utils = require('./lib/utils/helpers');
  */
 
 function remarked(src, options, callback) {
-  if (callback || typeof options === 'function') {
+  if (typeof options === 'function' || callback) {
     if (!callback) {
       callback = options;
       options = null;
     }
 
-    options = utils._merge({}, defaults, options || {});
+    options = merge({}, defaults, options);
 
     var highlight = options.highlight;
     var tokens;
@@ -45,7 +46,7 @@ function remarked(src, options, callback) {
 
     pending = tokens.length;
 
-    var done = function (err) {
+    var cb = function (err) {
       if (err) {
         options.highlight = highlight;
         return callback(err);
@@ -65,42 +66,42 @@ function remarked(src, options, callback) {
 
 
     if (!highlight || highlight.length < 3) {
-      return done();
+      return cb();
     }
 
     delete options.highlight;
 
     if (!pending) {
-      return done();
+      return cb();
     }
 
     for (; i < pending; i++) {
-      (function (token) {
-        if (token.type !== 'code') {
-          return --pending || done();
+      var token = tokens[i];
+      if (token.type !== 'code') {
+        return --pending || cb();
+      }
+      return highlight(token.text, token.lang, function (err, code) {
+        if (err) {
+          return cb(err);
         }
-        return highlight(token.text, token.lang, function (err, code) {
-          if (err) {
-            return done(err);
-          }
-          if (code == null || code === token.text) {
-            return --pending || done();
-          }
-          token.text = code;
-          token.escaped = true;
-          --pending || done();
-        });
-      })(tokens[i]);
+        if (code == null || code === token.text) {
+          return --pending || cb();
+        }
+        token.text = code;
+        token.escaped = true;
+        --pending || cb();
+      });
     }
     return;
   }
+
   try {
     if (options) {
-      options = utils._merge({}, defaults, options);
+      options = merge({}, defaults, options);
     }
     return Parser.parse(Lexer.lex(src, options), options);
   } catch (e) {
-    e.message += '\n[remarked]: please report this to https://github.com/jonschlinkert/remarked.';
+    e.message += '\n  [remarked]: please report this to https://github.com/jonschlinkert/remarked.';
     if ((options || defaults).silent) {
       return '<p>An error occured:</p><pre>' + utils._escape(e.message + '', true) + '</pre>';
     }
@@ -113,12 +114,11 @@ function remarked(src, options, callback) {
  */
 
 remarked.options = remarked.setOptions = function(options) {
-  utils._merge(defaults, options);
-  return remarked;
+  merge(defaults, options);
+  return this;
 };
 
 remarked.defaults = defaults;
-
 
 
 /**

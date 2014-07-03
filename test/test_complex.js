@@ -5,10 +5,12 @@
  * Licensed under the MIT license.
  */
 
-const expect = require('chai').expect;
-const marked = require('../');
-const helper = require('./helpers/utils');
-const normalize = helper.normalize;
+'use strict';
+
+var expect = require('chai').expect;
+var remarked = require('../');
+var helper = require('./helpers/utils');
+var normalize = helper.normalize;
 
 
 /**
@@ -20,7 +22,7 @@ describe('complex', function () {
     it('should convert complex_mixture', function (done) {
       var testfile = 'complex_mixture';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
@@ -30,10 +32,10 @@ describe('complex', function () {
   });
 
   describe('markdown_documentation_basics', function () {
-    xit('should convert markdown_documentation_basics', function (done) {
+    it('should convert markdown_documentation_basics', function (done) {
       var testfile = 'markdown_documentation_basics';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
@@ -46,7 +48,7 @@ describe('complex', function () {
     it('should convert markdown_documentation_syntax', function (done) {
       var testfile = 'markdown_documentation_syntax';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');

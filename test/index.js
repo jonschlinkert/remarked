@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * marked tests
+ * remarked tests
  * Copyright (c) 2011-2013, Christopher Jeffrey. (MIT Licensed)
  * https://github.com/chjj/marked
  */
@@ -13,7 +13,7 @@
 var fs = require('fs');
 var path = require('path');
 var _ = require('lodash');
-var marked = require('../');
+var remarked = require('../');
 var helpers = require('./helpers/utils');
 
 
@@ -63,7 +63,7 @@ function _flags(flags) {
       val = false;
     }
     if (marked.defaults.hasOwnProperty(key)) {
-      marked.defaults[key] = val;
+      remarked.defaults[key] = val;
     }
   });
 }
@@ -75,7 +75,7 @@ function runTests(engine, options) {
     engine = null;
   }
 
-  engine = engine || marked;
+  engine = engine || remarked;
   options = options || {};
   var files = options.files || load(),
     complete = 0,
@@ -87,7 +87,7 @@ function runTests(engine, options) {
     filename, file, flags, text, html, j, l;
 
   if (options.marked) {
-    marked.setOptions(options.marked);
+    remarked.setOptions(options.marked);
   }
 
   main: for (; i < len; i++) {
@@ -95,17 +95,17 @@ function runTests(engine, options) {
     file = files[filename];
 
     if (marked._original) {
-      marked.defaults = marked._original;
-      delete marked._original;
+      remarked.defaults = remarked._original;
+      delete remarked._original;
     }
 
 
     flags = filename.split('.').slice(1, -1);
     if (flags.length) {
-      marked._original = marked.defaults;
-      marked.defaults = {};
+      remarked._original = remarked.defaults;
+      remarked.defaults = {};
 
-      marked.defaults = _.extend({}, marked._original);
+      remarked.defaults = _.extend({}, remarked._original);
 
       _flags(flags);
     }
@@ -212,7 +212,7 @@ function runBench(options) {
   options = options || {};
 
   // Non-GFM, Non-pedantic
-  marked.setOptions({
+  remarked.setOptions({
     gfm: false,
     tables: false,
     breaks: false,
@@ -221,12 +221,12 @@ function runBench(options) {
     smartLists: false,
   });
   if (options.marked) {
-    marked.setOptions(options.marked);
+    remarked.setOptions(options.marked);
   }
-  bench('marked', marked);
+  bench('marked', remarked);
 
   // GFM
-  marked.setOptions({
+  remarked.setOptions({
     gfm: true,
     tables: false,
     breaks: false,
@@ -235,12 +235,12 @@ function runBench(options) {
     smartLists: false,
   });
   if (options.marked) {
-    marked.setOptions(options.marked);
+    remarked.setOptions(options.marked);
   }
-  bench('marked (gfm)', marked);
+  bench('marked (gfm)', remarked);
 
   // Pedantic
-  marked.setOptions({
+  remarked.setOptions({
     gfm: false,
     tables: false,
     breaks: false,
@@ -249,9 +249,9 @@ function runBench(options) {
     smartLists: false
   });
   if (options.marked) {
-    marked.setOptions(options.marked);
+    remarked.setOptions(options.marked);
   }
-  bench('marked (pedantic)', marked);
+  bench('marked (pedantic)', remarked);
 
   // robotskirt
   try {
@@ -302,9 +302,9 @@ function time(options) {
   options = options || {};
 
   if (options.marked) {
-    marked.setOptions(options.marked);
+    remarked.setOptions(options.marked);
   }
-  bench('marked', marked);
+  bench('marked', remarked);
 }
 
 /**
@@ -385,7 +385,7 @@ function fix() {
   });
 
   // markdown does some strange things.
-  // it does not encode naked `>`, marked does.
+  // it does not encode naked `>`, remarked does.
   (function () {
     var file = dir + '/amps_and_angles_encoding.html';
     var html = fs.readFileSync(file, 'utf8')
@@ -468,9 +468,9 @@ function parseArg(argv) {
         }
         options.marked = options.marked || {};
         if (arg.indexOf('--no-') === 0) {
-          options.marked[opt] = typeof marked.defaults[opt] !== 'boolean' ? null : false;
+          options.marked[opt] = typeof remarked.defaults[opt] !== 'boolean' ? null : false;
         } else {
-          options.marked[opt] = typeof marked.defaults[opt] !== 'boolean' ? argv.shift() : true;
+          options.marked[opt] = typeof remarked.defaults[opt] !== 'boolean' ? argv.shift() : true;
         }
       } else {
         orphans.push(arg);

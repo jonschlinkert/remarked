@@ -5,8 +5,10 @@
  * Licensed under the MIT license.
  */
 
-const expect = require('chai').expect;
-const utils = require('../lib/utils/helpers');
+'use strict';
+
+var expect = require('chai').expect;
+var utils = require('../lib/utils/helpers');
 
 
 describe('utils', function () {

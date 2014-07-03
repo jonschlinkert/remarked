@@ -5,10 +5,12 @@
  * Licensed under the MIT license.
  */
 
-const expect = require('chai').expect;
-const marked = require('../');
-const helper = require('./helpers/utils');
-const normalize = helper.normalize;
+'use strict';
+
+var expect = require('chai').expect;
+var remarked = require('../');
+var helper = require('./helpers/utils');
+var normalize = helper.normalize;
 
 
 /**
@@ -20,7 +22,7 @@ describe('escaping', function () {
     it('should convert backslash_escapes', function (done) {
       var testfile = 'backslash_escapes';
       var fixture = helper.readFile(testfile + '.md');
-      var actual = marked(fixture);
+      var actual = remarked(fixture);
 
       helper.writeActual('extras', testfile, actual);
       var expected = helper.readFile(testfile + '.html');
@@ -31,13 +33,13 @@ describe('escaping', function () {
 
   describe('when an angle bracket is escaped', function () {
     it('it should be preserved in the rendered HTML', function (done) {
-      var actual = marked('\\>');
+      var actual = remarked('\\>');
       expect(actual).to.deep.equal('<p>></p>\n');
       done();
     });
 
-    xit('it should be preserved in the rendered HTML', function (done) {
-      var actual = marked('\\<\\>');
+    it('it should be preserved in the rendered HTML', function (done) {
+      var actual = remarked('\\<\\>', {sanitize: true});
       expect(actual).to.deep.equal('<p><></p>\n');
       done();
     });

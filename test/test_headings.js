@@ -5,10 +5,12 @@
  * Licensed under the MIT license.
  */
 
-const expect = require('chai').expect;
-const marked = require('../');
-const helper = require('./helpers/utils');
-const normalize = helper.normalize;
+'use strict';
+
+var expect = require('chai').expect;
+var remarked = require('../');
+var helper = require('./helpers/utils');
+var normalize = helper.normalize;
 
 
 /**
@@ -21,25 +23,15 @@ describe('headings', function () {
       var markdown = '# Heading\n\nText';
       var html =     '<h1 id="heading">Heading</h1>\n<p>Text</p>\n';
 
-      var actual = marked(markdown);
+      var actual = remarked(markdown);
       expect(actual).to.deep.equal(html);
       done();
     });
-  });
 
-  xdescribe('custom headings', function () {
     it('should convert custom headings', function (done) {
       var markdown = '# Heading\n\nText';
-      var html = [
-        '<h1>',
-        '  <a name="heading" class="anchor" href="#heading">',
-        '    <span class="header-link"></span>',
-        '  </a>Heading',
-        '</h1><p>Text</p>\n'
-      ].join('\n');
-
-      var actual = marked(markdown);
-      expect(actual).to.deep.equal(html);
+      var actual = remarked(markdown);
+      expect(actual).to.deep.equal('<h1 id="heading">Heading</h1>\n<p>Text</p>\n');
       done();
     });
   });
