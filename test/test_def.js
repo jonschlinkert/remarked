@@ -28,7 +28,7 @@ var arr = ['one', 'two', 'three'];
  * Def
  */
 
-describe('def_blocks', function () {
+xdescribe('def_blocks', function () {
   it('should convert def_blocks', function (done) {
     var fixture = helper.readFile('def_blocks' + '.md');
     var actual = marked(fixture);

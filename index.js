@@ -11,11 +11,11 @@
 
 'use strict';
 
-var Lexer = require('./lib/lexer');
-var Parser = require('./lib/parser');
-var Renderer = require('./lib/renderer');
-var InlineLexer = require('./lib/inline-lexer');
 var defaults = require('./lib/defaults');
+var Parser = require('./lib/parser');
+var Lexer = require('./lib/lexer-block');
+var InlineLexer = require('./lib/lexer-inline');
+var Renderer = require('./lib/renderer');
 var utils = require('./lib/utils/helpers');
 
 

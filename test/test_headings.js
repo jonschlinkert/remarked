@@ -27,8 +27,8 @@ describe('headings', function () {
     });
   });
 
-  describe('custom headings', function () {
-    xit('should convert custom headings', function (done) {
+  xdescribe('custom headings', function () {
+    it('should convert custom headings', function (done) {
       var markdown = '# Heading\n\nText';
       var html = [
         '<h1>',
