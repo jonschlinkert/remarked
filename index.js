@@ -75,21 +75,21 @@ function remarked(src, options, callback) {
       return cb();
     }
 
-    for (; i < pending; i++) {
+    for (; i < pending; i += 1) {
       var token = tokens[i];
       if (token.type !== 'code') {
-        return --pending || cb();
+        return (pending -= 1) || cb();
       }
       return highlight(token.text, token.lang, function (err, code) {
         if (err) {
           return cb(err);
         }
-        if (code == null || code === token.text) {
-          return --pending || cb();
+        if (code === null || code === token.text) {
+          return (pending -= 1) || cb();
         }
         token.text = code;
         token.escaped = true;
-        --pending || cb();
+        (pending -= 1) || cb();
       });
     }
     return;
