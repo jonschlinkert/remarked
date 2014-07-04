@@ -1,7 +1,7 @@
 {
   "name": "remarked",
   "description": "Markdown parser and lexer. This is a fork of marked.js maintained for Assemble.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/jonschlinkert/remarked",
   "author": {
     "name": "Jon Schlinkert",
@@ -46,11 +46,14 @@
     "gulp": "^3.6.2",
     "gulp-jshint": "^1.5.5",
     "gulp-mocha": "^0.4.1",
+    "highlight.js": "^8.0.0",
     "js-beautify": "^1.5.1",
     "lodash": "^2.4.1",
-    "mocha": "~1.18.2"
+    "mocha": "~1.18.2",
+    "verb": "^0.2.13"
   },
   "dependencies": {
+    "minimist": "^0.2.0",
     "regexp-special-chars": "^0.1.0",
     "strings": "^0.4.1",
     "template": "^0.2.1"
