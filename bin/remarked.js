@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 
 /**
- * Marked CLI
+ * Remarked CLI
+ *
+ * Based on Marked CLI
  * Copyright (c) 2011-2013, Christopher Jeffrey (MIT License)
  */
 
-var fs = require('fs')
-  , util = require('util')
-  , marked = require('../');
+var fs = require('fs'),
+  util = require('util'),
+  marked = require('..');
 
 /**
  * Man Page
@@ -15,17 +17,12 @@ var fs = require('fs')
 
 function help() {
   var spawn = require('child_process').spawn;
-
-  var options = {
+  spawn('man', [__dirname + '/../man/marked.1'], {
     cwd: process.cwd(),
     env: process.env,
     setsid: false,
     customFds: [0, 1, 2]
-  };
-
-  spawn('man',
-    [__dirname + '/../man/marked.1'],
-    options);
+  });
 }
 
 /**
@@ -33,13 +30,9 @@ function help() {
  */
 
 function main(argv, callback) {
-  var files = []
-    , options = {}
-    , input
-    , output
-    , arg
-    , tokens
-    , opt;
+  var files = [],
+    options = {},
+    input, output, arg, tokens, opt;
 
   function getarg() {
     var arg = argv.shift();
@@ -55,7 +48,7 @@ function main(argv, callback) {
     } else if (arg[0] === '-') {
       if (arg.length > 2) {
         // e.g. -abc
-        argv = arg.substring(1).split('').map(function(ch) {
+        argv = arg.substring(1).split('').map(function (ch) {
           return '-' + ch;
         }).concat(argv);
         arg = argv.shift();
@@ -72,42 +65,38 @@ function main(argv, callback) {
   while (argv.length) {
     arg = getarg();
     switch (arg) {
-      case '--test':
-        return require('../test').main(process.argv.slice());
-      case '-o':
-      case '--output':
-        output = argv.shift();
-        break;
-      case '-i':
-      case '--input':
-        input = argv.shift();
-        break;
-      case '-t':
-      case '--tokens':
-        tokens = true;
-        break;
-      case '-h':
-      case '--help':
-        return help();
-      default:
-        if (arg.indexOf('--') === 0) {
-          opt = camelize(arg.replace(/^--(no-)?/, ''));
-          if (!marked.defaults.hasOwnProperty(opt)) {
-            continue;
-          }
-          if (arg.indexOf('--no-') === 0) {
-            options[opt] = typeof marked.defaults[opt] !== 'boolean'
-              ? null
-              : false;
-          } else {
-            options[opt] = typeof marked.defaults[opt] !== 'boolean'
-              ? argv.shift()
-              : true;
-          }
-        } else {
-          files.push(arg);
+    case '--test':
+      return require('../test').main(process.argv.slice());
+    case '-o':
+    case '--output':
+      output = argv.shift();
+      break;
+    case '-i':
+    case '--input':
+      input = argv.shift();
+      break;
+    case '-t':
+    case '--tokens':
+      tokens = true;
+      break;
+    case '-h':
+    case '--help':
+      return help();
+    default:
+      if (arg.indexOf('--') === 0) {
+        opt = camelize(arg.replace(/^--(no-)?/, ''));
+        if (!marked.defaults.hasOwnProperty(opt)) {
+          continue;
         }
-        break;
+        if (arg.indexOf('--no-') === 0) {
+          options[opt] = typeof marked.defaults[opt] !== 'boolean' ? null : false;
+        } else {
+          options[opt] = typeof marked.defaults[opt] !== 'boolean' ? argv.shift() : true;
+        }
+      } else {
+        files.push(arg);
+      }
+      break;
     }
   }
 
@@ -121,12 +110,10 @@ function main(argv, callback) {
     return fs.readFile(input, 'utf8', callback);
   }
 
-  return getData(function(err, data) {
+  return getData(function (err, data) {
     if (err) return callback(err);
 
-    data = tokens
-      ? JSON.stringify(marked.lexer(data, options), null, 2)
-      : marked(data, options);
+    data = tokens ? JSON.stringify(marked.lexer(data, options), null, 2) : marked(data, options);
 
     if (!output) {
       process.stdout.write(data + '\n');
@@ -142,20 +129,20 @@ function main(argv, callback) {
  */
 
 function getStdin(callback) {
-  var stdin = process.stdin
-    , buff = '';
+  var stdin = process.stdin,
+    buff = '';
 
   stdin.setEncoding('utf8');
 
-  stdin.on('data', function(data) {
+  stdin.on('data', function (data) {
     buff += data;
   });
 
-  stdin.on('error', function(err) {
+  stdin.on('error', function (err) {
     return callback(err);
   });
 
-  stdin.on('end', function() {
+  stdin.on('end', function () {
     return callback(null, buff);
   });
 
@@ -167,7 +154,7 @@ function getStdin(callback) {
 }
 
 function camelize(text) {
-  return text.replace(/(\w)-(\w)/g, function(_, a, b) {
+  return text.replace(/(\w)-(\w)/g, function (_, a, b) {
     return a + b.toUpperCase();
   });
 }
@@ -177,8 +164,8 @@ function camelize(text) {
  */
 
 if (!module.parent) {
-  process.title = 'marked';
-  main(process.argv.slice(), function(err, code) {
+  process.title = 'remarked';
+  main(process.argv.slice(), function (err, code) {
     if (err) throw err;
     return process.exit(code || 0);
   });

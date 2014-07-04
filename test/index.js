@@ -16,14 +16,14 @@ var _ = require('lodash');
 var remarked = require('../');
 var helpers = require('./helpers/utils');
 
-
 /**
  * Load Tests
  */
 
 function load() {
   var dir = __dirname + '/fixtures',
-    files = {}, list, file, i, l;
+    files = {},
+    list, file, i, l;
 
   list = fs
     .readdirSync(dir)
@@ -54,7 +54,6 @@ function load() {
  * Test Runner
  */
 
-
 function _flags(flags) {
   return flags.forEach(function (key) {
     var val = true;
@@ -67,7 +66,6 @@ function _flags(flags) {
     }
   });
 }
-
 
 function runTests(engine, options) {
   if (typeof engine !== 'function') {
@@ -98,7 +96,6 @@ function runTests(engine, options) {
       remarked.defaults = remarked._original;
       delete remarked._original;
     }
-
 
     flags = filename.split('.').slice(1, -1);
     if (flags.length) {
@@ -152,7 +149,9 @@ function runTests(engine, options) {
   }
 
   console.log('%d/%d tests completed successfully.', complete, len);
-  if (failed) {console.log('%d/%d tests failed.', failed, len);}
+  if (failed) {
+    console.log('%d/%d tests failed.', failed, len);
+  }
 
   // Tests currently failing.
   if (~failures.indexOf('def_blocks.text')) {
@@ -175,8 +174,12 @@ function bench(name, func) {
     // Change certain tests to allow
     // comparison to older benchmark times.
     fs.readdirSync(__dirname + '/new').forEach(function (name) {
-      if (path.extname(name) === '.html') {return;}
-      if (name === 'main.text') {return;}
+      if (path.extname(name) === '.html') {
+        return;
+      }
+      if (name === 'main.text') {
+        return;
+      }
       delete files[name];
     });
 
@@ -411,7 +414,6 @@ function parseArg(argv) {
   var orphans = [];
   var arg;
 
-
   function getarg() {
     var arg = argv.shift();
 
@@ -481,7 +483,6 @@ function parseArg(argv) {
 
   return options;
 }
-
 
 /**
  * Main

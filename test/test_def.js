@@ -8,23 +8,9 @@
 'use strict';
 
 var expect = require('chai').expect;
-var pretty = require('js-beautify').html;
 var remarked = require('../');
 var helper = require('./helpers/utils');
 var normalize = helper.stripSpaces;
-var prettify = !!~process.argv.indexOf('foo');
-
-var arr = ['one', 'two', 'three'];
-!!~arr.indexOf('two')
-
-// var value;
-// for (var index in process.argv) {
-//   var str = process.argv[index];
-//   if (str.indexOf("--apiKey") == 0) {
-//     value = str.substr(9);
-//   }
-// }
-
 
 /**
  * Def

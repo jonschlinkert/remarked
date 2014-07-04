@@ -5,7 +5,7 @@ An object containing functions to render tokens to HTML.
 **Example**:
 
 ```js
-var renderer = new marked.Renderer();
+var renderer = new remarked.Renderer();
 ```
 
 Type: `object`
@@ -13,17 +13,17 @@ Type: `object`
 Default: `new Renderer()`
 
 
-#### Customize renderers
+#### Custom renderers
 
-The renderer option allows you to render tokens in a custom manor.
+Don't like how remarked generates HTML? Use custom renderers to generate whatever output you want.
 
 **Example**
 
 Here is an example of overriding the default heading token rendering by adding an embedded anchor tag like on GitHub:
 
 ```javascript
-var marked = require('marked');
-var renderer = new marked.Renderer();
+var remarked = require('remarked');
+var renderer = new remarked.Renderer();
 
 renderer.heading = function (text, level) {
   var slug = text.toLowerCase().replace(/[^\w]+/g, '-');
@@ -36,7 +36,7 @@ renderer.heading = function (text, level) {
   ].join('\n');
 };
 
-console.log(marked('# heading+', { renderer: renderer }));
+console.log(remarked('# heading+', { renderer: renderer }));
 ```
 
 Results in:
