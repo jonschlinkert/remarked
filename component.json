@@ -1,7 +1,7 @@
 {
   "name": "remarked",
   "description": "Markdown parser and lexer. This is a fork of marked.js maintained for Assemble.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "repo": "jonschlinkert/remarked",
   "keywords": [
     "markdown",

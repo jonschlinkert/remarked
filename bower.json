@@ -1,7 +1,12 @@
 {
   "name": "remarked",
-  "version": "0.1.2",
-  "ignore": ["test", "vendor", "bin", "docs"],
+  "version": "0.1.3",
+  "ignore": [
+    "test",
+    "vendor",
+    "bin",
+    "docs"
+  ],
   "main": [
     "index.js"
   ]
