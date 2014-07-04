@@ -17,19 +17,7 @@ var normalize = helper.stripSpaces;
  * emphasis
  */
 
-describe('emphasis', function () {
-  describe('nested_em', function () {
-    it('should convert nested_em', function () {
-      var testfile = 'nested_em';
-      var fixture = helper.readFile(testfile + '.md');
-      var actual = remarked(fixture);
-
-      helper.writeActual(testfile, actual);
-      var expected = helper.readFile(testfile + '.html');
-      expect(normalize(actual)).to.equal(normalize(expected));
-    });
-  });
-
+describe('em and strong', function () {
   describe('strong_and_em_together', function () {
     it('should convert strong_and_em_together', function () {
       var testfile = 'strong_and_em_together';
