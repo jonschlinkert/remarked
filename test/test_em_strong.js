@@ -10,7 +10,7 @@
 var expect = require('chai').expect;
 var remarked = require('../');
 var helper = require('./helpers/utils');
-var normalize = helper.normalize;
+var normalize = helper.stripSpaces;
 
 
 /**
@@ -19,7 +19,7 @@ var normalize = helper.normalize;
 
 describe('emphasis', function () {
   describe('nested_em', function () {
-    it('should convert nested_em', function (done) {
+    it('should convert nested_em', function () {
       var testfile = 'nested_em';
       var fixture = helper.readFile(testfile + '.md');
       var actual = remarked(fixture);
@@ -27,12 +27,11 @@ describe('emphasis', function () {
       helper.writeActual(testfile, actual);
       var expected = helper.readFile(testfile + '.html');
       expect(normalize(actual)).to.equal(normalize(expected));
-      done();
     });
   });
 
   describe('strong_and_em_together', function () {
-    it('should convert strong_and_em_together', function (done) {
+    it('should convert strong_and_em_together', function () {
       var testfile = 'strong_and_em_together';
       var fixture = helper.readFile(testfile + '.md');
       var actual = remarked(fixture);
@@ -40,7 +39,6 @@ describe('emphasis', function () {
       helper.writeActual(testfile, actual);
       var expected = helper.readFile(testfile + '.html');
       expect(normalize(actual)).to.equal(normalize(expected));
-      done();
     });
   });
 });

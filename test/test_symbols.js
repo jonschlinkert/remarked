@@ -10,7 +10,7 @@
 var expect = require('chai').expect;
 var remarked = require('../');
 var helper = require('./helpers/utils');
-var normalize = helper.normalize;
+var normalize = helper.stripSpaces;
 
 
 /**
@@ -18,7 +18,7 @@ var normalize = helper.normalize;
  */
 
 describe('amps_and_angles_encoding', function () {
-  it('should convert amps_and_angles_encoding', function (done) {
+  it('should convert amps_and_angles_encoding', function () {
     var testfile = 'amps_and_angles_encoding';
     var fixture = helper.readFile(testfile + '.md');
     var actual = remarked(fixture);
@@ -26,6 +26,5 @@ describe('amps_and_angles_encoding', function () {
     helper.writeActual(testfile, actual);
     var expected = helper.readFile(testfile + '.html');
     expect(normalize(actual)).to.equal(normalize(expected));
-    done();
   });
 });

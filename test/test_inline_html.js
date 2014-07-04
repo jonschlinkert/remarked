@@ -10,7 +10,7 @@
 var expect = require('chai').expect;
 var remarked = require('../');
 var helper = require('./helpers/utils');
-var normalize = helper.normalize;
+var normalize = helper.stripSpaces;
 
 
 /**
@@ -19,7 +19,7 @@ var normalize = helper.normalize;
 
 describe('inline HTML', function () {
   describe('inline_html_advanced', function () {
-    it('should convert inline_html_advanced', function (done) {
+    it('should convert inline_html_advanced', function () {
       var testfile = 'inline_html_advanced';
       var fixture = helper.readFile(testfile + '.md');
       var actual = remarked(fixture);
@@ -27,12 +27,11 @@ describe('inline HTML', function () {
       helper.writeActual(testfile, actual);
       var expected = helper.readFile(testfile + '.html');
       expect(normalize(actual)).to.equal(normalize(expected));
-      done();
     });
   });
 
   describe('inline_html_comments', function () {
-    it('should convert inline_html_comments', function (done) {
+    it('should convert inline_html_comments', function () {
       var testfile = 'inline_html_comments';
       var fixture = helper.readFile(testfile + '.md');
       var actual = remarked(fixture);
@@ -40,12 +39,11 @@ describe('inline HTML', function () {
       helper.writeActual(testfile, actual);
       var expected = helper.readFile(testfile + '.html');
       expect(normalize(actual)).to.equal(normalize(expected));
-      done();
     });
   });
 
   describe('inline_html_simple', function () {
-    it('should convert inline_html_simple', function (done) {
+    it('should convert inline_html_simple', function () {
       var testfile = 'inline_html_simple';
       var fixture = helper.readFile(testfile + '.md');
       var actual = remarked(fixture);
@@ -53,7 +51,6 @@ describe('inline HTML', function () {
       helper.writeActual(testfile, actual);
       var expected = helper.readFile(testfile + '.html');
       expect(normalize(actual)).to.equal(normalize(expected));
-      done();
     });
   });
 });

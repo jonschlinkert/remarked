@@ -27,17 +27,16 @@ describe('highlight', function () {
   });
 
   describe('when code is passed with an explicitly defined custom language', function () {
-    it('should return customized HTML', function (done) {
+    it('should return customized HTML', function () {
       var fixture = '```css\n.foo {color: red;}```';
       var actual = remarked(fixture, {highlight: highlight});
       utils.writeActual('inline/highlight-explicit-lang-css', actual);
 
       var expected = utils.readExpected('inline/highlight-explicit-lang-css.html');
       expect(actual).to.deep.equal(expected);
-      done();
     });
 
-    it('should return customized HTML', function (done) {
+    it('should return customized HTML', function () {
       var fixture = '```less\n.foo {color: red;}```';
       var actual = remarked(fixture, {highlight: highlight});
 
@@ -45,7 +44,6 @@ describe('highlight', function () {
       var expected = utils.readExpected('inline/highlight-explicit-lang-less.html');
 
       expect(actual).to.deep.equal(expected);
-      done();
     });
   });
 });

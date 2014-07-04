@@ -10,7 +10,7 @@
 var expect = require('chai').expect;
 var remarked = require('../');
 var helper = require('./helpers/utils');
-var normalize = helper.normalize;
+var normalize = helper.stripSpaces;
 
 
 /**
@@ -19,20 +19,18 @@ var normalize = helper.normalize;
 
 describe('headings', function () {
   describe('headings', function () {
-    it('should convert headings', function (done) {
+    it('should convert headings', function () {
       var markdown = '# Heading\n\nText';
       var html =     '<h1 id="heading">Heading</h1>\n<p>Text</p>\n';
 
       var actual = remarked(markdown);
       expect(actual).to.deep.equal(html);
-      done();
     });
 
-    it('should convert custom headings', function (done) {
+    it('should convert custom headings', function () {
       var markdown = '# Heading\n\nText';
       var actual = remarked(markdown);
       expect(actual).to.deep.equal('<h1 id="heading">Heading</h1>\n<p>Text</p>\n');
-      done();
     });
   });
 });

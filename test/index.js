@@ -62,7 +62,7 @@ function _flags(flags) {
       key = key.substring(2);
       val = false;
     }
-    if (marked.defaults.hasOwnProperty(key)) {
+    if (remarked.defaults.hasOwnProperty(key)) {
       remarked.defaults[key] = val;
     }
   });
@@ -94,7 +94,7 @@ function runTests(engine, options) {
     filename = keys[i];
     file = files[filename];
 
-    if (marked._original) {
+    if (remarked._original) {
       remarked.defaults = remarked._original;
       delete remarked._original;
     }
@@ -223,7 +223,7 @@ function runBench(options) {
   if (options.marked) {
     remarked.setOptions(options.marked);
   }
-  bench('marked', remarked);
+  bench('remarked', remarked);
 
   // GFM
   remarked.setOptions({
@@ -237,7 +237,7 @@ function runBench(options) {
   if (options.marked) {
     remarked.setOptions(options.marked);
   }
-  bench('marked (gfm)', remarked);
+  bench('remarked (gfm)', remarked);
 
   // Pedantic
   remarked.setOptions({
@@ -251,7 +251,7 @@ function runBench(options) {
   if (options.marked) {
     remarked.setOptions(options.marked);
   }
-  bench('marked (pedantic)', remarked);
+  bench('remarked (pedantic)', remarked);
 
   // robotskirt
   try {
@@ -304,7 +304,7 @@ function time(options) {
   if (options.marked) {
     remarked.setOptions(options.marked);
   }
-  bench('marked', remarked);
+  bench('remarked', remarked);
 }
 
 /**
@@ -463,7 +463,7 @@ function parseArg(argv) {
     default:
       if (arg.indexOf('--') === 0) {
         var opt = utils.camelize(arg.replace(/^--(no-)?/, ''));
-        if (!marked.defaults.hasOwnProperty(opt)) {
+        if (!remarked.defaults.hasOwnProperty(opt)) {
           continue;
         }
         options.marked = options.marked || {};
@@ -510,7 +510,7 @@ function main(argv) {
  */
 
 if (!module.parent) {
-  process.title = 'marked';
+  process.title = 'remarked';
   process.exit(main(process.argv.slice()) ? 0 : 1);
 } else {
   exports = main;

@@ -10,7 +10,7 @@
 var expect = require('chai').expect;
 var remarked = require('../');
 var helper = require('./helpers/utils');
-var normalize = helper.normalize;
+var normalize = helper.stripSpaces;
 
 
 /**
@@ -19,35 +19,31 @@ var normalize = helper.normalize;
 
 describe('escaping', function () {
   describe('backslash_escapes', function () {
-    it('should convert backslash_escapes', function (done) {
-      var testfile = 'backslash_escapes';
-      var fixture = helper.readFile(testfile + '.md');
-      var actual = remarked(fixture);
+    it('should convert backslash_escapes', function () {
+      var fixture = helper.readFile('backslash_escapes.md');
+      var expected = helper.readFile('backslash_escapes.html');
 
-      helper.writeActual(testfile, actual);
-      var expected = helper.readFile(testfile + '.html');
+      var actual = remarked(fixture);
+      helper.writeActual('backslash_escapes', actual);
+
       expect(normalize(actual)).to.equal(normalize(expected));
-      done();
     });
   });
 
   describe('when an angle bracket is escaped', function () {
-    it('it should be preserved in the rendered HTML', function (done) {
+    it('it should be preserved in the rendered HTML', function () {
       var actual = remarked('\\>');
       expect(actual).to.deep.equal('<p>></p>\n');
-      done();
     });
 
-    it('it should be preserved in the rendered HTML', function (done) {
+    it('it should be preserved in the rendered HTML', function () {
       var actual = remarked('\\<');
       expect(actual).to.deep.equal('<p><</p>\n');
-      done();
     });
 
-    it('it should be preserved in the rendered HTML', function (done) {
+    it('it should be preserved in the rendered HTML', function () {
       var actual = remarked('\\<\\>');
       expect(actual).to.deep.equal('<p><></p>\n');
-      done();
     });
   });
 });

@@ -10,7 +10,7 @@
 var expect = require('chai').expect;
 var remarked = require('../');
 var helper = require('./helpers/utils');
-var normalize = helper.normalize;
+var normalize = helper.stripSpaces;
 
 
 /**
@@ -18,7 +18,7 @@ var normalize = helper.normalize;
  */
 
 describe('smartypants', function () {
-  it('should convert text', function (done) {
+  it('should convert text', function () {
     var testfile = 'smartypants_text';
     var fixture = helper.readFile(testfile + '.md');
     var actual = remarked(fixture, {smartypants: true});
@@ -26,6 +26,5 @@ describe('smartypants', function () {
     helper.writeActual(testfile, actual);
     var expected = helper.readFile(testfile + '.html');
     expect(normalize(actual)).to.equal(normalize(expected));
-    done();
   });
 });

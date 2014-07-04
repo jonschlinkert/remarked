@@ -29,12 +29,24 @@ utils.readFile = function(filepath) {
 };
 
 /**
- * Normalize newlines
+ * Read a file in the `test/expected` directory.
+ *
+ * @param  {String} `filepath`
+ * @return {String}
+ */
+
+utils.readExpected = function(filepath) {
+  var src = path.join('test/expected', filepath);
+  return file.readFileSync(src);
+};
+
+/**
+ * Remove spaces
  * @param   {String}  str
  * @return  {String}
  */
 
-utils.normalize = function(str) {
+utils.stripSpaces = function(str) {
   return str.replace(/\s+/g, '');
 };
 

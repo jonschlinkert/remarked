@@ -11,7 +11,7 @@ var expect = require('chai').expect;
 var pretty = require('js-beautify').html;
 var remarked = require('../');
 var helper = require('./helpers/utils');
-var normalize = helper.normalize;
+var normalize = helper.stripSpaces;
 var prettify = !!~process.argv.indexOf('foo');
 
 var arr = ['one', 'two', 'three'];
@@ -31,7 +31,7 @@ var arr = ['one', 'two', 'three'];
  */
 
 xdescribe('def_blocks', function () {
-  it('should convert def_blocks', function (done) {
+  it('should convert def_blocks', function () {
     var fixture = helper.readFile('def_blocks' + '.md');
     var actual = remarked(fixture);
 

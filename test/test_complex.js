@@ -10,7 +10,7 @@
 var expect = require('chai').expect;
 var remarked = require('../');
 var helper = require('./helpers/utils');
-var normalize = helper.normalize;
+var normalize = helper.stripSpaces;
 
 
 /**
@@ -19,7 +19,7 @@ var normalize = helper.normalize;
 
 describe('complex', function () {
   describe('complex_mixture', function () {
-    it('should convert complex_mixture', function (done) {
+    it('should convert complex_mixture', function () {
       var testfile = 'complex_mixture';
       var fixture = helper.readFile(testfile + '.md');
       var actual = remarked(fixture);
@@ -27,12 +27,11 @@ describe('complex', function () {
       helper.writeActual(testfile, actual);
       var expected = helper.readFile(testfile + '.html');
       expect(normalize(actual)).to.equal(normalize(expected));
-      done();
     });
   });
 
   describe('markdown_documentation_basics', function () {
-    it('should convert markdown_documentation_basics', function (done) {
+    it('should convert markdown_documentation_basics', function () {
       var testfile = 'markdown_documentation_basics';
       var fixture = helper.readFile(testfile + '.md');
       var actual = remarked(fixture);
@@ -40,12 +39,11 @@ describe('complex', function () {
       helper.writeActual(testfile, actual);
       var expected = helper.readFile(testfile + '.html');
       expect(normalize(actual)).to.equal(normalize(expected));
-      done();
     });
   });
 
   describe('markdown_documentation_syntax', function () {
-    it('should convert markdown_documentation_syntax', function (done) {
+    it('should convert markdown_documentation_syntax', function () {
       var testfile = 'markdown_documentation_syntax';
       var fixture = helper.readFile(testfile + '.md');
       var actual = remarked(fixture);
@@ -53,7 +51,6 @@ describe('complex', function () {
       helper.writeActual(testfile, actual);
       var expected = helper.readFile(testfile + '.html');
       expect(normalize(actual)).to.equal(normalize(expected));
-      done();
     });
   });
 });

@@ -10,7 +10,7 @@
 var expect = require('chai').expect;
 var remarked = require('../');
 var helper = require('./helpers/utils');
-var normalize = helper.normalize;
+var normalize = helper.stripSpaces;
 
 
 /**
@@ -19,7 +19,7 @@ var normalize = helper.normalize;
 
 describe('hr', function () {
   describe('horizontal_rules', function () {
-    it('should convert horizontal_rules', function (done) {
+    it('should convert horizontal_rules', function () {
       var testfile = 'horizontal_rules';
       var fixture = helper.readFile(testfile + '.md');
       var actual = remarked(fixture);
@@ -27,12 +27,11 @@ describe('hr', function () {
       helper.writeActual(testfile, actual);
       var expected = helper.readFile(testfile + '.html');
       expect(normalize(actual)).to.equal(normalize(expected));
-      done();
     });
   });
 
   describe('hr_list_break', function () {
-    it('should convert hr_list_break', function (done) {
+    it('should convert hr_list_break', function () {
       var testfile = 'hr_list_break';
       var fixture = helper.readFile(testfile + '.md');
       var actual = remarked(fixture);
@@ -40,7 +39,6 @@ describe('hr', function () {
       helper.writeActual(testfile, actual);
       var expected = helper.readFile(testfile + '.html');
       expect(normalize(actual)).to.equal(normalize(expected));
-      done();
     });
   });
 });
