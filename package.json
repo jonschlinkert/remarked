@@ -56,6 +56,8 @@
     "test": "mocha -R spec"
   },
   "devDependencies": {
+    "ansi": "^0.3.0",
+    "benchmark": "^1.0.0",
     "chai": "~1.9.1",
     "fs-utils": "^0.4.3",
     "gulp": "^3.6.2",
