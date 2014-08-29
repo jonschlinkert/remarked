@@ -135,19 +135,13 @@ Remarked.defaults = defaults;
 
 
 /**
- * Expose
+ * Expose classes
  */
 
 Remarked.Parser = Parser;
-Remarked.parser = Parser.parse;
-
 Remarked.Renderer = Renderer;
-
 Remarked.Lexer = Lexer;
-Remarked.lexer = Lexer.lex;
-
 Remarked.InlineLexer = InlineLexer;
-Remarked.inlineLexer = InlineLexer.output;
 
 
 // Export remarked
