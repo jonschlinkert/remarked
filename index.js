@@ -19,20 +19,18 @@ var Renderer = require('./lib/renderer');
 var utils = require('./lib/utils/helpers');
 var merge = require('./lib/utils/merge');
 
+// Copy defaults
+var remarkedOptions = merge({}, defaults);
 
 /**
  * remarked
  */
 
-function Remarked(src, options, callback) {
+function Remarked(src, options) {
   if (!(this instanceof Remarked)) {
-    if (typeof options === 'function') {
-      callback = options;
-      options = null;
-    }
+    var remarked = new Remarked(merge({} ,remarkedOptions, options));
 
-    var remarked = new Remarked(options);
-    return remarked.parse(src, callback);
+    return remarked.parse(src);
   }
 
   this.options = merge({}, defaults, src);
@@ -64,6 +62,11 @@ Remarked.prototype.parse = function(src) {
 
 Remarked.prototype.setOptions = function(options) {
   merge(this.options, options);
+  return this;
+};
+
+Remarked.setOptions = function (options) {
+  merge(remarkedOptions, options);
   return this;
 };
 
