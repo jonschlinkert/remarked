@@ -66,4 +66,16 @@ describe('code', function () {
       expect(normalize(actual)).to.equal(normalize(expected));
     });
   });
+
+  describe('laxSpacing', function () {
+    it('should not detect code blocks beginning with spaces when laxSpacing = true', function () {
+      var testfile = 'lax_spacing';
+      var fixture = helper.readFile(testfile + '.md');
+      var actual = remarked(fixture, {laxSpacing: true});
+
+      helper.writeActual(testfile, actual);
+      var expected = helper.readFile(testfile + '.html');
+      expect(normalize(actual)).to.equal(normalize(expected));
+    });
+  });
 });

@@ -22,7 +22,8 @@ describe('.setOptions', function () {
       pedantic: false,
       sanitize: false,
       smartLists: false,
-      smartypants: false
+      smartypants: false,
+      laxSpacing: false
     });
 
     remarked('');
@@ -37,5 +38,6 @@ describe('.setOptions', function () {
     expect(actualOptions).to.have.property('sanitize', false);
     expect(actualOptions).to.have.property('smartLists', false);
     expect(actualOptions).to.have.property('smartypants', false);
+    expect(actualOptions).to.have.property('laxSpacing', false);
   });
 });
