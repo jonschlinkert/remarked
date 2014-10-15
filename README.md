@@ -1,61 +1,6 @@
-# remarked [![NPM version](https://badge.fury.io/js/remarked.png)](http://badge.fury.io/js/remarked)
+# No longer maintained
 
-> Markdown parser and lexer. A fork of marked.js maintained for Assemble.
-
-## Install
-
-#### [npm](npmjs.org)
-
-```bash
-npm i remarked --save
-```
-
-
-## [Why?](#why-)
-
-## Usage
-
-Minimal usage:
-
-```js
-var markdown = require('remarked');
-console.log(markdown('I am using **remarked**.'));
-//=> <p>I am using <strong>remarked</strong>.</p>
-```
-
-## API
-
-### .setOptions
-
-Define remarked options with:
-
-```js
-remarked.setOptions({})
-
-```js
-var remarked = require('remarked');
-remarked.setOptions({
-  renderer: new remarked.Renderer(),
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: true,
-  smartLists: true,
-  smartypants: false
-});
-
-console.log(remarked('I am using **remarked**.'));
-```
-
-## Why?
-
-Assemble used [marked.js](https://github.com/chjj/marked) extensively, but - for a couple of reasons - we've decided to maintain a fork so that our users can have a more reliable experience going forward.
-
-1. There are bugs, like [escaping quotes](https://github.com/chjj/marked/issues/269#issuecomment-47995414) automatically that prevent us from making marked.js a built-in parser.
-1. Given the massive amount of time and effort that we've put into fixing marked-related issues on the Assemble project and related projects
-1. Breaking changes are introduced to marked.js without bumping the minor version
-1. It does too much or too little with certain features. Like [automatically adding ids to headings](https://github.com/chjj/marked/pull/181)
+**I've moved on to [remarkable](https://github.com/jonschlinkert/remarkable/)**
 
 
 ## Author
